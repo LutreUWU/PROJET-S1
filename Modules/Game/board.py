@@ -32,46 +32,6 @@ def board_game(tile_hori, tile_verti, boxSize, coordinateNW):
         y += boxSize[1]
     return board_lst
 
-
-
-def afficher_trou(tirette_h, tirette_v, quadrillage, longeur, margin):
-    """
-    une fonction qui en entrée la tirette et affiche les trous qui sont dans la tirette
-    parametres:
-        tirette : list de list
-        quadrillage : list de list
-        longeur : int
-        couleur : str
-    
-    return :
-        il affiche les trous grace à fltk
-    """
-    for i in range(len(tirette_h)): # parcourir la matrice
-        for j in range(len(tirette_h[i])):
-            if tirette_h[i][j] == False:
-                couleur = 'blue'
-                fltk.rectangle(quadrillage[i][j][0][0] - longeur[0] // 2 + margin[0], 
-                            quadrillage[i][j][0][1] - longeur[1] // 4 + margin[1], 
-                            quadrillage[i][j][0][0] + longeur[0] // 2 - margin[0], 
-                            quadrillage[i][j][0][1] + longeur[1] // 4 - margin[1],
-                            couleur,
-                            remplissage=couleur)
-                
-            if tirette_v[i][j] == False:
-                couleur = 'orange'
-                fltk.rectangle(quadrillage[i][j][0][0] - longeur[0] // 4 + margin[0], 
-                            quadrillage[i][j][0][1] - longeur[1] // 2 + margin[1], 
-                            quadrillage[i][j][0][0] + longeur[0] // 4 - margin[0], 
-                            quadrillage[i][j][0][1] + longeur[1] // 2 - margin[1],
-                            couleur,
-                            remplissage=couleur)
-                
-            fltk.rectangle(quadrillage[i][j][0][0] - longeur[0] // 2 + margin[0], 
-                            quadrillage[i][j][0][1] - longeur[1] // 2 + margin[1], 
-                            quadrillage[i][j][0][0] + longeur[0] // 2 - margin[0], 
-                            quadrillage[i][j][0][1] + longeur[1] // 2 - margin[1],
-                            couleur='black')
-
 def create_board(grid, boxDimensions, margin, tirette_h, tirette_v):
     """
     This function will take the grid list and will create the center of each case
