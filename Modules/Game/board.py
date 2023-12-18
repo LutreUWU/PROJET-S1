@@ -1,16 +1,23 @@
-import Modules.fltk as fltk
+if __name__ == "__main__":
+    import fltk as fltk
+else:
+    import Modules.fltk as fltk
 
 def board_game(tile_hori, tile_verti, boxSize, coordinateNW):
     """
-    This fonction will take the dimension of the board and
-    will add all the parameters necessary for creating
-    the box
+    Cette fonction qui va créer la liste nécessaire pour créer
+    la grille de jeu
     
-    Args: The dimensions(tile_hori, tile_verti)
+    Paramètres:
+        tile_hori / tile_verti : Nombre de case horizontale et verticale
+        boxSite : Taille d'une case
+        coordinateNW : Coordonnées North West de la grille  
     
-    Return:The coordinates of each square center as a module 
+    Return:
+        Une liste de liste de coordonnée
     
-    Exemple with a 3x2 grid and a margin of 5  
+    >>> board_game(2, 2, (50, 50), (10, 10))
+    [[[(35.0, 35.0)], [(85.0, 35.0)]], [[(35.0, 85.0)], [(85.0, 85.0)]]]    
     """
     x = coordinateNW[0] + boxSize[0]/2
     y = coordinateNW[1] + boxSize[1]/2 
