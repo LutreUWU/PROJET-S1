@@ -1,4 +1,8 @@
-import Modules.fltk as fltk
+if __name__ == "__main__":
+    import fltk as fltk
+else:
+    import Modules.fltk as fltk
+
 def create_menu(button_width, button_height, coordinate_button, hover):
     """
     Fonction qui créer la page du jeu sur fltk
