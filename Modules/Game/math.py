@@ -58,3 +58,26 @@ def create_tirette(nbBox):
     tirette_v = [[choice([True, False]) for _ in range(nbBox) ] for _ in range(nbBox)]
     return tirette_h,tirette_v
 
+
+def coordinate_center(LARGEUR, HAUTEUR):
+    """
+    For the menu,
+    This function will give :
+    - Dimension of a button
+    - The center of each button for the game menu
+    
+    Args: Dimensions of the windows
+    
+    Return: List of dimension, and list of the center
+    """
+    
+    button_width = LARGEUR * 0.5
+    button_height = (HAUTEUR * 0.35) / 3
+    margin_button = HAUTEUR * 0.02
+    
+    coordinate_button = []
+    for i in range(1,4): # Car y a 3 boutons 
+        x = LARGEUR / 2
+        y = HAUTEUR * 0.5 + (button_height + margin_button) * i
+        coordinate_button.append((x, y))
+    return button_width, button_height, coordinate_button
