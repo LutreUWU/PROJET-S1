@@ -1,19 +1,17 @@
 import Modules.fltk as fltk
 def create_menu(button_width, button_height, coordinate_button, hover):
     """
-    fonction qui genere la page_principale du jeu
-    parametres : 
-        l : float width of the window
-        h : float height of the window
-        margin : tuple margin above and left
-    return :
-        dimension_rectangle : list contains dimension of rectangles
-        l_case : float width of a rectangle
-        h_case : float height of rectangle
+    Fonction qui créer la page du jeu sur fltk
+    Parametres : 
+        button_width, button_height  : Dimensions de la fenêtre
+        coordinate_button : Coordonnées du centre de chaque bouton 
+        hover : L'indice du bouton qui est hover, si ce n'est pas le cas, renvoie False 
+    Return :
+        Les boutons sur fltk
     """
     button_name = ["Play", "How to play", "Settings"]
     for i, elem in enumerate(coordinate_button):
-        if (hover != False) and (hover == i):
+        if type(hover) == int and hover == i:
             color = "#dabd2c"
         else :
             color = "#125cc0"          
@@ -24,15 +22,16 @@ def create_menu(button_width, button_height, coordinate_button, hover):
 
 def detection_rect(abs, ord, button_width, button_height, coordinate_button):
     """
-    a function to detect if the mouse is in the rectangles , she takes in entry the list of dimension of the rectangles , 
-    mouse_abscisse, mouse_ordonnée and width and height of a rectangle and j who is a hint to see if we update the page or not
-    parametres : 
-        lst : list
-        x, y, l_case, h_case : float
-        j : int
+    Une fonction qui détecte si on passe sur un bouton, si c'est le cas, alors on change la couleur du bouton
+    Paramètres: 
+        abscisse : Coordonnée x de la souris
+        ordonnee : Coordonnée y de la souris
+        button_width : largeur du bouton
+        button_height : longueur du bouton
+        coordinate_button : les coordonnées (x,y) du boutons
     
-    return : 
-        j : int
+    Return : 
+        L'indice du bouton, sinon False 
     """
     for i, elem in enumerate(coordinate_button):
         if abs > elem[0] - button_width/2 and abs < elem[0] + button_width/2: 
