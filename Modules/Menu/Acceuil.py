@@ -1,6 +1,4 @@
-if __name__ == "__main__":
-    import fltk as fltk
-else:
+if __name__ != "__main__":
     import Modules.fltk as fltk
 
 def create_menu(button_width, button_height, coordinate_button, hover):
@@ -22,7 +20,7 @@ def create_menu(button_width, button_height, coordinate_button, hover):
         fltk.rectangle(elem[0] - button_width/2 , elem[1] - button_height/2, 
                        elem[0] + button_width/2 , elem[1] + button_height/2, 
                        remplissage=color, tag="Acceuil")
-        fltk.texte(elem[0], elem[1], button_name[i], couleur='black', tag="Acceuil"[i], ancrage="center")
+        fltk.texte(elem[0], elem[1], button_name[i], couleur='black', tag="Acceuil", ancrage="center")
 
 def detection_rect(abs, ord, button_width, button_height, coordinate_button):
     """
@@ -42,3 +40,29 @@ def detection_rect(abs, ord, button_width, button_height, coordinate_button):
             if ord > elem[1] - button_height/2 and ord < elem[1] + button_height/2:
                 return i 
     return False  
+
+
+def create_title(center_title, title_width_radius, title_height_radius):
+    """
+    Une fonction qui va permettre de créer le titre du jeu sur fltk
+    Paramètres:
+        center_title : Coordonnées x,y du point où on va créer le titre (Au centre de la fenêtre, un peu plus haut)
+        title_width_radius : Rayon du rectangle en largeur
+        title_height_radius : Rayon du rectangle en hauteur
+    
+    Return : 
+        Le titre du jeu sur fltk
+    """
+    game_name = 'S T A Y  A L I V E'
+    color_radiant = ["#00C7FF", "#00AEFF", "#0098FF", "#007FFF", "#0065FF"]
+    fltk.texte(center_title[0], center_title[1], game_name, couleur="#3498db", taille=50, ancrage="center", tag="Acceuil")
+    #On trace des rectangles de + en + grand avec une couleur légèrement différente pour faire un dégradé de couleur 
+    for i in range(5):
+        color = color_radiant[i]
+        fltk.rectangle(center_title[0] - (title_width_radius + i), center_title[1] - (title_height_radius + i), 
+                       center_title[0] + (title_width_radius + i), center_title[1] + (title_height_radius + i), 
+                       couleur= color, epaisseur=2, tag="Acceuil")
+
+
+    
+   
