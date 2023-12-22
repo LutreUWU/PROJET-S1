@@ -30,7 +30,7 @@ while Play == False:
     hover = acceuil.detection_rect(fltk.abscisse_souris(), fltk.ordonnee_souris(), 
                                    button_width, button_height, coordinate_button)
     if type_click == 'ClicGauche':
-        if hover == 0: # Si on clique gauche et que hover == 0 veut dire que le curseur est sur le bouton "Play"
+        if type(hover) == int and hover == 0: # Si on clique gauche et que hover == 0 veut dire que le curseur est sur le bouton "Play"
             Play = True # On arrête la boucle
     fltk.efface("Acceuil") # On efface tout pour actualiser la page
     # On affiche le titre du jeu
