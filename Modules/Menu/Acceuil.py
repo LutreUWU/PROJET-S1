@@ -29,7 +29,7 @@ def detection_rect(abs, ord, button_width, button_height, coordinate_button):
         abscisse : Coordonnée x de la souris
         ordonnee : Coordonnée y de la souris
         button_width : largeur du bouton
-        button_height : longueur du bouton
+        button_height : hauteur du bouton
         coordinate_button : les coordonnées (x,y) du boutons
     
     Return : 
@@ -61,7 +61,7 @@ def create_title(center_title, title_width_radius, title_height_radius):
         color = color_radiant[i]
         fltk.rectangle(center_title[0] - (title_width_radius + i), center_title[1] - (title_height_radius + i), 
                        center_title[0] + (title_width_radius + i), center_title[1] + (title_height_radius + i), 
-                       couleur= color, epaisseur=2, tag="Acceuil")
+                       couleur= color, epaisseur=3, tag="Acceuil")
 
 
     
