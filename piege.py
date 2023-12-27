@@ -12,7 +12,7 @@ import Modules.Menu.Acceuil as acceuil
 LARGEUR = 1000
 HAUTEUR = 1000
 NB_CASE = 7 # On a autant de case vertical et horizontale
-
+NB_BALLE = 3
 fltk.cree_fenetre(LARGEUR, HAUTEUR)
 # On Multiplie la largeur par 1.77 car l'image est au format 1920 * 1080 donc 1920/1080 = 1.77
 fltk.image(LARGEUR/2, HAUTEUR/2, 'res/bg.gif', largeur=int(LARGEUR*1.77), hauteur=HAUTEUR, ancrage='center')
@@ -45,7 +45,24 @@ boxDimensions, margin, coordinateNW = calcu.size_box(LARGEUR, HAUTEUR, NB_CASE)
 tirette_h, tirette_v = calcu.create_tirette(NB_CASE)
 grid_lst = board.board_game(NB_CASE, NB_CASE, boxDimensions, coordinateNW)
 board.create_board(grid_lst, boxDimensions, margin, tirette_h, tirette_v)
-
 fltk.mise_a_jour()
+# Boucle while pour le fonctionnement du jeu
+Setup_balls = False 
+while not Setup_balls:
+        ev = fltk.attend_ev()
+        tev = fltk.type_ev(ev)
+        #print(tev) if ev != None else None
+        if tev == 'Quitte':
+            break
+        if tev == 'ClicGauche' and NB_BALLE > 0: #pour poser les balle au debut du jeu
+           board.detect_click_case(fltk.abscisse_souris(), fltk.ordonnee_souris(),
+                                   margin, boxDimensions, coordinateNW
+                                  )
+        fltk.mise_a_jour() # On actualise le jeu
+        
+        
+"""La boucle est infini pour l'instant, normalement quand on aura finis de placer la balle la boucle s'arrête"""
+
+
 fltk.attend_ev()
 fltk.ferme_fenetre()

@@ -2,8 +2,15 @@ from random import choice
 
 def creation_tirette(NB_CASE:int):
     """
-    Fonction qui créer les tirettes, 
-    fonction qui créer la matrix des tirette
+    Fonction qui va créer la liste des tirettes horizontale et verticale avec des valeurs booléennes, 
+    elle va aussi optimiser la tirette afin qu'on puisse toujours terminer le jeu
+    
+    Paramètres:
+        NB_CASE : Nombre de case 
+        
+    Return:
+        La liste des tirettes horizontales et verticales 
+     
     >>> def foo(NB_CASE):
     ...     x = False
     ...     tirette_h, tirette_v = creation_tirette(NB_CASE)
@@ -42,7 +49,7 @@ def creation_tirette(NB_CASE:int):
             # On choisis aléatoirement 
             choix_h = choice([True, False])
             choix_v = choice([True, False])
-            # Pour finir le jeu on doit avoir un trou toutes les 2 cases max
+            # Pour finir le jeu on doit avoir au moins un trou toutes les 2 cases max
             # Si on a choisit Faux, alors on doit s'assurer qu'il y a au moins un trou dans les 2 cases d'avant
             if not choix_h:
                 optimisation_tirette(ligne_h, choix_h, i)
@@ -59,21 +66,50 @@ def creation_tirette(NB_CASE:int):
         all_tirette_v.append(ligne_v)
     return all_tirette_h, all_tirette_v
 
-def optimisation_tirette(ligne, booleen_tirette, i):
-    optimisation_trou_hori = False
+def optimisation_tirette(tirette:list, booleen_tirette:bool, i:int):
+    """
+    Fonction qui va optimiser l'emplacement des trous dans chaque tirette afin
+    que le jeu soit toujours terminable.
+    Le but est de vérifier l'état des 2 cases derrière l'origine et si elles n'ont pas de trous alors
+    on va obligatoirement mettre un trou.
+
+    Paramètres:
+        tirette (_list_): La ligne de tirette qu'on veut sélectionner 
+        booleen_tirette (_bool_): La valeur booléene de la case avant l'optimisation
+        i (_int_): Indice de la case dans la tirette
+
+    Returns:
+        La valeur booléene de la case après l'optimisation  
+        
+    >>> optimisation_tirette([False, False, False], False, 2)
+    [False, False, True]
+    >>> optimisation_tirette([False, False, False], True, 2)
+    [False, False, True]
+    >>> optimisation_tirette([False, False, True, False], True, 3)
+    [False, False, True, True]
+    """
+    # Permet de déterminer si on doit activer l'optimisation ou pas 
+    activate_optimisation_trou = True 
+    # On va regarder les 2 cases derrières celle qu'on veut optimiser
     for j in range(1, 3):
-        if ligne[i - j] == True:
-            optimisation_trou_hori = True
-    if not optimisation_trou_hori:
-        ligne.append(True)
+        # S'il y a au moins un trou dans les 2 dernières cases, alors pas besoin d'optimiser la case  
+        if tirette[i - j] == True: 
+            activate_optimisation_trou = False
+    # S'il n'y a pas de trou alors on va activer l'optimisation et on va obligatoirement mettre un True
+    if activate_optimisation_trou:
+        tirette.append(True)
     else:
-        ligne.append(booleen_tirette)
-    return ligne
+        # Sinon on apprend la valeur booléene de base 
+        tirette.append(booleen_tirette)
+    return tirette
 
 def click_opposer(save_click:list, prochain_click:list):
     """
-    fonction qui verifier si le joueur n'a pas click sur le coté opposer
-    et renvoi True si c'est le cas sinon False
+    Fonction qui verifie si le joueur n'a pas cliqué sur le côté opposer
+    et renvoie True si c'est le cas sinon False
+    
+    Paramètres:
+        save_click: 
     >>> click_opposer([1, 2], ["gauche", 2])
     False
     >>> click_opposer([1, 2], ["droite", 3])
