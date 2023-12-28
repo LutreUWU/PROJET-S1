@@ -16,21 +16,19 @@ def size_box(LARGEUR_windows: int, HAUTEUR_windows: int, nbBox:int):
         coordinateNW: Marge pour la fenêtre
     
     >>> size_box(1000, 1000, 7)
-    ((114.28571428571429, 114.28571428571429), (5.0, 5.0), (100.0, 100.0)) 
-    
+    ((100.0, 100.0), (5.0, 5.0), (150.0, 150.0))
     >>> size_box(0, 0, 1000)
     ((0.0, 0.0), (0.0, 0.0), (0.0, 0.0))
-    
     >>> size_box(1000, 1000, 0)
-    ((0.0, 0.0), (0.0, 0.0), (0.0, 0.0))
+    ((0, 0), (0, 0), (0, 0))
     """
     if nbBox == 0: # Pour éviter un message d'erreur si on met 0 case 
         return ((0,0), (0,0), (0,0))
     # Dans le cas où Largeur /= Hauteur, on appelle la fonction pour centrer le jeu et éviter l'étirement
     margin_center, largeur, hauteur = center_box(LARGEUR_windows, HAUTEUR_windows)    
     # On crée une fenêtre plus petite pour avoir la marge avec la fenêtre
-    center_width = largeur * 0.9
-    center_height = hauteur * 0.9
+    center_width = largeur * 0.85
+    center_height = hauteur * 0.85
     # La marge est égal à 0.05% de la largeur/hauteur 
     margin = (largeur * 0.005, hauteur * 0.005)
     # On calcule les nouvelles dimensions, puis on le divise par le nombre de cases pour avoir la taille d'une case
@@ -155,3 +153,6 @@ def coordinate_center_title(LARGEUR_windows:int, HAUTEUR_windows:int):
     title_height_radius = (half_height * 0.6)/2
     return center_half_windows, title_width_radius, title_height_radius
         
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()

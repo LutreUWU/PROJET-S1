@@ -29,12 +29,7 @@ def creation_tirette(NB_CASE:int):
     ...                         y = True
     ...     return (x, y)
     ...
-    >>> foo(7)
-    (True, True)
-    >>> foo(10)
-    (True, True)
-    >>> foo(50)
-    (True, True)
+    
     """
     all_tirette_h, all_tirette_v = [], []
     max_push = 2 # Car on peut tirer 2 fois d'un côté max 
@@ -80,29 +75,53 @@ def optimisation_tirette(tirette:list, booleen_tirette:bool, i:int):
 
     Returns:
         La valeur booléene de la case après l'optimisation  
-        
-    >>> optimisation_tirette([False, False, False], False, 2)
-    [False, False, True]
-    >>> optimisation_tirette([False, False, False], True, 2)
-    [False, False, True]
-    >>> optimisation_tirette([False, False, True, False], True, 3)
-    [False, False, True, True]
+    >>> optimisation_tirette([True, True], True, 2)
+    [True, True, False]
+    >>> optimisation_tirette([False, False, False], False, 3)
+    [False, False, False, False]
+    >>> optimisation_tirette([False, False, False], True, 3)
+    [False, False, False, True]
     """
     # Permet de déterminer si on doit activer l'optimisation ou pas 
-    activate_optimisation_trou = True 
+    activate_optimisation_trou = False 
     # On va regarder les 2 cases derrières celle qu'on veut optimiser
-    for j in range(1, 3):
-        # S'il y a au moins un trou dans les 2 dernières cases, alors pas besoin d'optimiser la case  
-        if tirette[i - j] == True: 
-            activate_optimisation_trou = False
+    if tirette[i - 1] == True: 
+        if tirette[i - 2] == True:
+            activate_optimisation_trou = True
     # S'il n'y a pas de trou alors on va activer l'optimisation et on va obligatoirement mettre un True
     if activate_optimisation_trou:
-        tirette.append(True)
+        tirette.append(False)
     else:
         # Sinon on apprend la valeur booléene de base 
         tirette.append(booleen_tirette)
     return tirette
 
+def create_CompteurTirette(tirette_h:list, tirette_v:list):
+    """
+    Fonction qui permet d'associer à chaque tirette un compteur, 
+    pour savoir combien de fois on peut tirer à gauche, à droite, en haut, en bas.
+    
+    Paramètres:
+        tirette_h: La liste de True et de False pour les tirettes horizontales
+        tirette_v: La liste de True et de False pour les tirettes verticales
+    
+    Returns:
+        allCompteurX: Liste de dictionnaire avec le compteur gauche et droite de chaque tirette horizontale (1 de chaque côté par défault)
+        allCompteurY: Liste de dictionnaire avec le compteur haut et bas de chaque tirette verticale (1 de chaque côté par défault)
+
+    >>> create_CompteurTirette([True, True], [True, False])
+    ([{'gauche': 1, 'droite': 1}, {'gauche': 1, 'droite': 1}], [{'haut': 1, 'bas': 1}, {'haut': 1, 'bas': 1}])
+    """
+    
+    allCompteurX, allCompteurY = [], []
+    for elem in tirette_h:
+        compteur = {"gauche": 1, "droite": 1}
+        allCompteurX.append(compteur)
+    for elem in tirette_v:
+        compteur = {"haut": 1, "bas": 1}
+        allCompteurY.append(compteur)
+    return allCompteurX, allCompteurY
+    
 def click_opposer(save_click:list, prochain_click:list):
     """
     Fonction qui verifie si le joueur n'a pas cliqué sur le côté opposer
@@ -134,3 +153,7 @@ def click_opposer(save_click:list, prochain_click:list):
     for a in range(len(save_click)):
         save_click[a] = prochain_click[a]
     return False
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()

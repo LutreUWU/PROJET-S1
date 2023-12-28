@@ -42,8 +42,10 @@ while Play == False:
 # On supprime le menu et on crée le plateau de jeu  
 fltk.efface("Acceuil")
 boxDimensions, margin, coordinateNW = calcu.size_box(LARGEUR, HAUTEUR, NB_CASE)
-tirette_h, tirette_v = calcu.create_tirette(NB_CASE)
+tirette_h, tirette_v = tirette.creation_tirette(NB_CASE)
+compteur_tiretteh, compteur_tirettev = tirette.create_CompteurTirette(tirette_h, tirette_v)
 grid_lst = board.board_game(NB_CASE, NB_CASE, boxDimensions, coordinateNW)
+board.create_compteurTirette(compteur_tiretteh, compteur_tirettev, grid_lst, boxDimensions)
 board.create_board(grid_lst, boxDimensions, margin, tirette_h, tirette_v)
 fltk.mise_a_jour()
 # Boucle while pour le fonctionnement du jeu
@@ -56,7 +58,7 @@ while not Setup_balls:
             break
         if tev == 'ClicGauche' and NB_BALLE > 0: #pour poser les balle au debut du jeu
            board.detect_click_case(fltk.abscisse_souris(), fltk.ordonnee_souris(),
-                                   margin, boxDimensions, coordinateNW
+                                   NB_CASE, margin, boxDimensions, coordinateNW
                                   )
         fltk.mise_a_jour() # On actualise le jeu
         
