@@ -58,7 +58,7 @@ def creation_tirette(NB_CASE:int):
                 ligne_v.append(choix_v)
         # On pousse la tirette dans la liste
         all_tirette_h.append(ligne_h)
-        all_tirette_v.append(ligne_v)
+        all_tirette_v.append(ligne_v)    
     return all_tirette_h, all_tirette_v
 
 def optimisation_tirette(tirette:list, booleen_tirette:bool, i:int):
@@ -75,22 +75,22 @@ def optimisation_tirette(tirette:list, booleen_tirette:bool, i:int):
 
     Returns:
         La valeur booléene de la case après l'optimisation  
-    >>> optimisation_tirette([True, True], True, 2)
-    [True, True, False]
-    >>> optimisation_tirette([False, False, False], False, 3)
-    [False, False, False, False]
-    >>> optimisation_tirette([False, False, False], True, 3)
-    [False, False, False, True]
+    >>> optimisation_tirette([False, False], False, 2)
+    [False, False, True]
+    >>> optimisation_tirette([False, False, True], False, 3)
+    [False, False, True, False]
+    >>> optimisation_tirette([True, False, False], False, 3)
+    [True, False, False, True]
     """
     # Permet de déterminer si on doit activer l'optimisation ou pas 
     activate_optimisation_trou = False 
     # On va regarder les 2 cases derrières celle qu'on veut optimiser
-    if tirette[i - 1] == True: 
-        if tirette[i - 2] == True:
+    if tirette[i - 1] == False: 
+        if tirette[i - 2] == False:
             activate_optimisation_trou = True
     # S'il n'y a pas de trou alors on va activer l'optimisation et on va obligatoirement mettre un True
     if activate_optimisation_trou:
-        tirette.append(False)
+        tirette.append(True)
     else:
         # Sinon on apprend la valeur booléene de base 
         tirette.append(booleen_tirette)
@@ -104,7 +104,7 @@ def create_CompteurTirette(tirette_h:list, tirette_v:list):
     Paramètres:
         tirette_h: La liste de True et de False pour les tirettes horizontales
         tirette_v: La liste de True et de False pour les tirettes verticales
-    
+
     Returns:
         allCompteurX: Liste de dictionnaire avec le compteur gauche et droite de chaque tirette horizontale (1 de chaque côté par défault)
         allCompteurY: Liste de dictionnaire avec le compteur haut et bas de chaque tirette verticale (1 de chaque côté par défault)
@@ -115,10 +115,10 @@ def create_CompteurTirette(tirette_h:list, tirette_v:list):
     
     allCompteurX, allCompteurY = [], []
     for elem in tirette_h:
-        compteur = {"gauche": 1, "droite": 1}
+        compteur = {"gauche": 2, "droite": 0}
         allCompteurX.append(compteur)
     for elem in tirette_v:
-        compteur = {"haut": 1, "bas": 1}
+        compteur = {"haut": 2, "bas": 0}
         allCompteurY.append(compteur)
     return allCompteurX, allCompteurY
     
