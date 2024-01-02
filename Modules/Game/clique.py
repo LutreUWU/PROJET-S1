@@ -25,14 +25,14 @@ def detect_click(abs:int, ord:int, NB_CASE:int, margin:tuple, boxDimensions:tupl
     # Variable pour vérifier si on a cliqué entre les cases ou pas 
     positionX, positionY = coordinateNW[0], coordinateNW[1] # Origine des points
     if nb_case_x < 0 or nb_case_y < 0: # Si on clique à gauche ou en haut de la grille
-        if nb_case_x < 0:
+        if nb_case_x < 0 and 0 <= nb_case_y < NB_CASE:
             return detect_click_compteur(abs, ord, nb_case_x, nb_case_y, coordinateNW, boxDimensions, NB_CASE, "Gauche")
-        elif nb_case_y < 0:
+        elif nb_case_y < 0 and NB_CASE > nb_case_x >= 0:
             return detect_click_compteur(abs, ord, nb_case_x, nb_case_y, coordinateNW, boxDimensions, NB_CASE, "Haut")
     if nb_case_x >= NB_CASE or nb_case_y >= NB_CASE: # Si on clique à droite ou en bas de la grille
-        if nb_case_x >= NB_CASE:
+        if nb_case_x >= NB_CASE and 0 <= nb_case_y < NB_CASE:
             return detect_click_compteur(abs, ord, nb_case_x, nb_case_y, coordinateNW, boxDimensions, NB_CASE, "Droite")
-        elif nb_case_y >= NB_CASE:
+        elif nb_case_y == NB_CASE and NB_CASE > nb_case_x >= 0 :
             return detect_click_compteur(abs, ord, nb_case_x, nb_case_y, coordinateNW, boxDimensions, NB_CASE, "Bas")
     
     checkX, checkY = False, False # Si les 2 sont True alors on n'a pas cliqué entre les cases

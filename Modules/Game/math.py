@@ -27,8 +27,8 @@ def size_box(LARGEUR_windows: int, HAUTEUR_windows: int, nbBox:int):
     # Dans le cas où Largeur /= Hauteur, on appelle la fonction pour centrer le jeu et éviter l'étirement
     margin_center, largeur, hauteur = center_box(LARGEUR_windows, HAUTEUR_windows)    
     # On crée une fenêtre plus petite pour avoir la marge avec la fenêtre
-    center_width = largeur * 0.85
-    center_height = hauteur * 0.85
+    center_width = largeur * 0.80
+    center_height = hauteur * 0.80
     # La marge est égal à 0.05% de la largeur/hauteur 
     margin = (largeur * 0.005, hauteur * 0.005)
     # On calcule les nouvelles dimensions, puis on le divise par le nombre de cases pour avoir la taille d'une case
@@ -152,7 +152,9 @@ def coordinate_center_title(LARGEUR_windows:int, HAUTEUR_windows:int):
     title_width_radius = (LARGEUR_windows * 0.6)/2
     title_height_radius = (half_height * 0.6)/2
     return center_half_windows, title_width_radius, title_height_radius
-        
+
+
+
 if __name__ == "__main__":
     import doctest
     doctest.testmod()

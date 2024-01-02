@@ -40,8 +40,9 @@ def board_game(tile_hori:int, tile_verti:int, boxSize:tuple, coordinateNW:tuple)
         y += boxSize[1]
     return board_lst
 
+playerball = {}
 def create_board(grid:list, boxDimensions:tuple, margin:tuple, tirette_h:list, tirette_v:list, ball_case, playercolor:str,
-                 compteur_tiretteh, compteur_tirettev):
+                 compteur_tiretteh, compteur_tirettev, playerlist:dict, playerTurn):
     """
     Cette fonction va prendre la liste des cases et créer les cases en fonction des paramètres qui lui sont
     associés (s'il y a une tirette ou non, s'il y a une balle ou non ...) 
@@ -87,13 +88,17 @@ def create_board(grid:list, boxDimensions:tuple, margin:tuple, tirette_h:list, t
                 if check_hole(tirette_h, tirette_v, x, y, compteur_tiretteh, compteur_tirettev) != True : # Vérifie qu'on clique pas sur un trou
                     if elem[1] == "0": # Vérifier qu'il n'y a pas déja une balle
                         elem[1] = playercolor
-            if elem[1] != "0":
+            if elem[1] != "0" and type(elem[1]) != int: 
                 if check_hole(tirette_h, tirette_v, x, y, compteur_tiretteh, compteur_tirettev) != True: # Si on a un trou lorsqu'on déplacé une tirette
                     fltk.cercle(elem[0][0], elem[0][1], margin[0]*2 - boxDimensions[0] / 2.5, 
                                 epaisseur=5, couleur=elem[1], remplissage=elem[1], tag=f"{elem[0]}")
-                else:
-                    elem[1] = "0" #Modifier pour savoir quelle joueur a pris la balle 
-                    fltk.efface(f"{elem[0]}")
+                elif check_hole(tirette_h, tirette_v, x, y, compteur_tiretteh, compteur_tirettev) == True :
+                    for i in range(len(playerlist)):
+                        if playerlist[i]["Color"] == elem[1]:
+                            playerlist[i]["Balle"] -= 1
+                            fltk.efface(f"{elem[0]}")
+                            elem[1] = playerTurn 
+           
 
 def compteurTirette(compteur_tiretteh:list, compteur_tirettev:list, grid_lst:list, boxDimensions:tuple):
     """
@@ -127,9 +132,8 @@ def compteurTirette(compteur_tiretteh:list, compteur_tirettev:list, grid_lst:lis
                                    elem[0][0] + boxDimensions[0] / 10, elem[0][1] - sizeY*i + radiusY,
                                    "#ECF0F1", "#ECF0F1", tag="tirette")
                 for i in range(2, compteur_tirettev[x][sideY] + 2):
-                    print(i, i-2)
                     fltk.texte(elem[0][0], elem[0][1] - sizeY*i + radiusY,
-                               i - 2, ancrage="center", tag="tirette")
+                               i - 1, ancrage="center", tag="tirette")
     
     for y, line in enumerate(grid_lst):
         for x, elem in enumerate(line):
@@ -149,7 +153,7 @@ def compteurTirette(compteur_tiretteh:list, compteur_tirettev:list, grid_lst:lis
                                 radiusX, "#D7BDE2", "#D7BDE2", tag="tirette")
                 for i in range(2, compteur_tiretteh[y][sideX] + 2):
                     fltk.texte(elem[0][0] - sizeX*i + radiusX, elem[0][1], 
-                               i - 2, ancrage="center", tag="tirette")
+                               i - 1, ancrage="center", tag="tirette")
 
     
 
