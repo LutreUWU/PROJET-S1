@@ -8,8 +8,8 @@ def player_setup(joueur:list, NB_JOUEUR:int):
     while player_number < NB_JOUEUR:
         joueur_dic =  {}
         joueur_dic["Prenom"] = joueur_name[player_number]
-        joueur_dic["Color"] = color[player_number]
-        joueur_dic["Balle"] = 0
+        joueur_dic['Color'] = color[player_number]
+        joueur_dic['Balle'] = 0
         joueur.append(joueur_dic)
         player_number += 1 
     return joueur
@@ -25,11 +25,11 @@ def aff_joueur(LARGEUR_windows:int, turn: str, joueur:dict, NB_JOUEUR):
     et met l'affichage du joueur en couleur et les autres 
     """
     center = LARGEUR_windows/2
-    taille = fltk.taille_texte(f" Placer une balle {joueur[turn%NB_JOUEUR]["Prenom"]} ")
+    taille = fltk.taille_texte(f" Placer une balle {joueur[turn%NB_JOUEUR]['Prenom']} ")
     fltk.rectangle(center - taille[0]/2, 0, center + taille[0]/2, taille[1], 
-                   joueur[turn%NB_JOUEUR]["Color"], remplissage="#6495ED" ,epaisseur=3, tag="turn"
+                   joueur[turn%NB_JOUEUR]['Color'], remplissage="#6495ED" ,epaisseur=3, tag="turn"
                    )
-    fltk.texte(center, taille[1]/2, f"Placer une balle {joueur[turn%NB_JOUEUR]["Prenom"]}", ancrage="center", tag="turn")
+    fltk.texte(center, taille[1]/2, f"Placer une balle {joueur[turn%NB_JOUEUR]['Prenom']}", ancrage="center", tag="turn")
        
 def aff_tour(LARGEUR_windows:int, joueur:list, playerTurn:int):
     """
@@ -43,11 +43,11 @@ def aff_tour(LARGEUR_windows:int, joueur:list, playerTurn:int):
     """
     playerIndex = cherche_tour(playerTurn, joueur)
     center = LARGEUR_windows/2
-    taille = fltk.taille_texte(f"Sélectionnez une tirette {joueur[playerIndex]["Prenom"]}")
+    taille = fltk.taille_texte(f"Sélectionnez une tirette {joueur[playerIndex]['Prenom']}")
     fltk.rectangle(center - taille[0]/2, 0, center + taille[0]/2, taille[1], 
-                   joueur[playerIndex]["Color"], remplissage="#6495ED" ,epaisseur=3, tag="turn"
+                   joueur[playerIndex]['Color'], remplissage="#6495ED" ,epaisseur=3, tag="turn"
                    )
-    fltk.texte(center, taille[1]/2, f"Sélectionnez une tirette {joueur[playerIndex]["Prenom"]}", ancrage="center", tag="turn")
+    fltk.texte(center, taille[1]/2, f"Sélectionnez une tirette {joueur[playerIndex]['Prenom']}", ancrage="center", tag="turn")
     
 def cherche_tour(playerNumber: int , playerlist: list):
     """
@@ -61,7 +61,7 @@ def cherche_tour(playerNumber: int , playerlist: list):
     """
     if playerNumber == len(playerlist):#si on est a la fin de la liste
         playerNumber = 0
-    if playerlist[playerNumber]["Balle"] == 0: #verifie si il a pas une balle en jeu
+    if playerlist[playerNumber]['Balle'] == 0: #verifie si il a pas une balle en jeu
         playerNumber = cherche_tour(playerNumber + 1, playerlist)#on recherche avec le playerlist suivant
     return playerNumber
 
@@ -78,20 +78,20 @@ def aff_NbBallejoueur(tour: int, joueur: dict, nb_balle_player_max:int):
     """ 
     margin_ball = fltk.hauteur_fenetre() * 0.01
     allcoord = []
-    sizeText = max([fltk.taille_texte(elem["Prenom"]) for elem in joueur])
+    sizeText = max([fltk.taille_texte(elem['Prenom']) for elem in joueur])
     for i in range(len(joueur)):
         if i%2 == 0:
             allcoord.append( (0, 0 + (i * (sizeText[1] + margin_ball))) )
         else:
             allcoord.append( (fltk.largeur_fenetre() - sizeText[0], 0 + ((i-1) * (sizeText[1] + margin_ball))) )
     for i, coord in enumerate(allcoord):
-        ball_lost = nb_balle_player_max - joueur[i]["Balle"]
-        colorball_lost = joueur[i]["Color"]
+        ball_lost = nb_balle_player_max - joueur[i]['Balle']
+        colorball_lost = joueur[i]['Color']
         if i == tour:
-            playercolor = joueur[i]["Color"]
+            playercolor = joueur[i]['Color']
         else:
             playercolor = "grey"    
-        fltk.texte(coord[0], coord[1], joueur[i]["Prenom"], playercolor, tag="score")
+        fltk.texte(coord[0], coord[1], joueur[i]['Prenom'], playercolor, tag="score")
         for i in range(ball_lost):
             fltk.cercle(coord[0] + margin_ball + (i*margin_ball*2), coord[1] + sizeText[1] + sizeText[1]/2 + margin_ball,
                         margin_ball, colorball_lost, colorball_lost, tag="score"
