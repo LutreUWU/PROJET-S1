@@ -157,3 +157,39 @@ def click_opposer(save_click:list, prochain_click:list):
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+    
+def working_compteurTirette(click_tirette, compteur_tiretteh, compteur_tirettev, NB_CASE, playerTurn, forbidden_click):
+    if click_tirette == forbidden_click:
+        return forbidden_click, playerTurn
+    if type(click_tirette) == list:
+            if click_tirette[0] < 0 and compteur_tiretteh[click_tirette[1]]["gauche"] <= -click_tirette[0]:
+                if click_tirette[0] == -1 and compteur_tiretteh[click_tirette[1]]["gauche"] < 2 :
+                    compteur_tiretteh[click_tirette[1]]["gauche"] += 1
+                    compteur_tiretteh[click_tirette[1]]["droite"] -= 1
+                    forbidden_click = [abs(click_tirette[0] - NB_CASE), click_tirette[1]]
+                    playerTurn += 1
+                    return forbidden_click, playerTurn
+            elif click_tirette[0] > NB_CASE and compteur_tiretteh[click_tirette[1]]["droite"] <= click_tirette[0]:
+                if click_tirette[0] == NB_CASE + 1 and compteur_tiretteh[click_tirette[1]]["droite"] < 2 :
+                    compteur_tiretteh[click_tirette[1]]["gauche"] -= 1
+                    compteur_tiretteh[click_tirette[1]]["droite"] += 1
+                    forbidden_click = [-(click_tirette[0] - NB_CASE), click_tirette[1]]
+                    playerTurn += 1
+                    return forbidden_click, playerTurn
+            elif click_tirette[1] < 0 and compteur_tirettev[click_tirette[0]]["haut"] <= -click_tirette[1]:
+                if click_tirette[1] == -1 and compteur_tirettev[click_tirette[0]]["haut"] < 2 :
+                    compteur_tirettev[click_tirette[0]]["haut"] += 1
+                    compteur_tirettev[click_tirette[0]]["bas"] -= 1
+                    forbidden_click = [click_tirette[0], abs(click_tirette[1] - NB_CASE)]
+                    playerTurn += 1
+                    return forbidden_click, playerTurn
+            elif click_tirette[1] > NB_CASE and compteur_tirettev[click_tirette[0]]["bas"] <= click_tirette[1]:
+                if click_tirette[1] == NB_CASE + 1 and compteur_tirettev[click_tirette[0]]["bas"] < 2 :
+                    compteur_tirettev[click_tirette[0]]["haut"] -= 1
+                    compteur_tirettev[click_tirette[0]]["bas"] += 1
+                    forbidden_click = [click_tirette[0], -(click_tirette[1] - NB_CASE)]
+                    playerTurn += 1
+                    return forbidden_click, playerTurn
+    return forbidden_click, playerTurn
+
+        

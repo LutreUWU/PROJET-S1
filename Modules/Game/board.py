@@ -69,8 +69,8 @@ def create_board(grid:list, boxDimensions:tuple, margin:tuple, tirette_h:list, t
             # On appelle la fonction qui vérifie si y a une tirette ou pas
             # Et en fonction de la réponse il dessine l'image approprié 
             if check_hole(tirette_h, tirette_v, x, y, compteur_tiretteh, compteur_tirettev) == "Horizontale" :
-                fltk.rectangle(elem[0][0] - boxDimensions[0] / 2 + 2, elem[0][1] - boxDimensions[1] / 5 + margin[1], 
-                               elem[0][0] + boxDimensions[0] / 2 - 2, elem[0][1] + boxDimensions[1] / 5 - margin[1],
+                fltk.rectangle(elem[0][0] - boxDimensions[0] / 2 + margin[0] + 2, elem[0][1] - boxDimensions[1] / 5 + margin[1], 
+                               elem[0][0] + boxDimensions[0] / 2 - margin[0] - 2, elem[0][1] + boxDimensions[1] / 5 - margin[1],
                                couleur="#D7BDE2", remplissage="#D7BDE2", tag="board")
             elif check_hole(tirette_h, tirette_v, x, y, compteur_tiretteh, compteur_tirettev) == "Verticale" :
                 fltk.rectangle(elem[0][0] - boxDimensions[0] / 5 + margin[0], elem[0][1] - boxDimensions[1] / 2 + margin[1] + 2, 
@@ -115,6 +115,13 @@ def compteurTirette(compteur_tiretteh:list, compteur_tirettev:list, grid_lst:lis
         Les tirettes sur fltk
     """
     radius = boxDimensions[0]//5
+    font_size = 0
+    taille = fltk.taille_texte("2", taille=font_size)
+    while taille[0] <= (radius*2)*0.8 and taille[1] <= (radius*2)*0.8:
+        taille = fltk.taille_texte("2", taille=font_size)
+        font_size += 1
+
+    
     for y, line in enumerate(grid_lst): # Pour chaque rangée de case ...
         if y-1 == -1: # Si on est en haut de la grille, 
                 sideY, sizeY, radiusY = "haut", boxDimensions[1]/2, radius
@@ -133,7 +140,7 @@ def compteurTirette(compteur_tiretteh:list, compteur_tirettev:list, grid_lst:lis
                                    "#ECF0F1", "#ECF0F1", tag="tirette")
                 for i in range(2, compteur_tirettev[x][sideY] + 2):
                     fltk.texte(elem[0][0], elem[0][1] - sizeY*i + radiusY,
-                               i - 1, ancrage="center", tag="tirette")
+                               i - 1, taille=font_size, ancrage="center", tag="tirette")
     
     for y, line in enumerate(grid_lst):
         for x, elem in enumerate(line):
@@ -153,7 +160,7 @@ def compteurTirette(compteur_tiretteh:list, compteur_tirettev:list, grid_lst:lis
                                 radiusX, "#D7BDE2", "#D7BDE2", tag="tirette")
                 for i in range(2, compteur_tiretteh[y][sideX] + 2):
                     fltk.texte(elem[0][0] - sizeX*i + radiusX, elem[0][1], 
-                               i - 1, ancrage="center", tag="tirette")
+                               i - 1, taille=font_size, ancrage="center", tag="tirette")
 
     
 

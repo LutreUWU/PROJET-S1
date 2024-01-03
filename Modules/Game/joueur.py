@@ -25,7 +25,7 @@ def aff_joueur(LARGEUR_windows:int, turn: str, joueur:dict, NB_JOUEUR):
     et met l'affichage du joueur en couleur et les autres 
     """
     center = LARGEUR_windows/2
-    taille = fltk.taille_texte(f"Placer une balle {joueur[turn%NB_JOUEUR]["Prenom"]}")
+    taille = fltk.taille_texte(f" Placer une balle {joueur[turn%NB_JOUEUR]["Prenom"]} ")
     fltk.rectangle(center - taille[0]/2, 0, center + taille[0]/2, taille[1], 
                    joueur[turn%NB_JOUEUR]["Color"], remplissage="#6495ED" ,epaisseur=3, tag="turn"
                    )

@@ -11,6 +11,11 @@ def create_menu(button_width, button_height, coordinate_button, hover):
     Return :
         Les boutons sur fltk
     """
+    font_size = 1
+    taille = fltk.taille_texte("How to play", taille=font_size)
+    while taille[0] <= button_width*0.7:
+        font_size += 1 
+        taille = fltk.taille_texte("How to play", taille=font_size)
     button_name = ["Play", "How to play", "Settings"]
     for i, elem in enumerate(coordinate_button):
         if type(hover) == int and hover == i:
@@ -20,29 +25,36 @@ def create_menu(button_width, button_height, coordinate_button, hover):
         fltk.rectangle(elem[0] - button_width/2 , elem[1] - button_height/2, 
                        elem[0] + button_width/2 , elem[1] + button_height/2, 
                        remplissage=color, tag="Acceuil")
-        fltk.texte(elem[0], elem[1], button_name[i], couleur='black', tag="Acceuil", ancrage="center")
+        fltk.texte(elem[0], elem[1], button_name[i], couleur='black', tag="Acceuil", taille=font_size, ancrage="center")
 
-def detection_rect(abs, ord, button_width, button_height, coordinate_button):
+def detection_rect(abs:int, ord:int, button_width:int, button_height:int, coordinate_button:list):
     """
-    Une fonction qui détecte si on passe sur un bouton, si c'est le cas, alors on change la couleur du bouton
+    Une fonction qui détecte si on passe sur un bouton, si c'est le cas, alors elle renvoie l'indice du bouton
+    qu'on a hover, sinon elle renvoie False
     Paramètres: 
         abscisse : Coordonnée x de la souris
         ordonnee : Coordonnée y de la souris
         button_width : largeur du bouton
         button_height : hauteur du bouton
-        coordinate_button : les coordonnées (x,y) du boutons
-    
+        coordinate_button : Liste de tuple (x,y) de chaque boutons 
     Return : 
-        L'indice du bouton, sinon False 
+        L'indice du bouton, sinon False
+    
+    >>> detection_rect(0, 0, 400, 200, [(400, 500), (400, 500), (500, 500)]) 
+    False
+    >>> detection_rect(420, 510, 400, 200, [(400, 500), (400, 700), (400, 900)]) 
+    0
+    >>> detection_rect(310, 950, 400, 200, [(400, 400), (400, 700), (400, 900)]) 
+    2
     """
-    for i, elem in enumerate(coordinate_button):
-        if abs > elem[0] - button_width/2 and abs < elem[0] + button_width/2: 
-            if ord > elem[1] - button_height/2 and ord < elem[1] + button_height/2:
-                return i 
+    for i, elem in enumerate(coordinate_button): # Pour chaque coordonnées des boutons 
+        if elem[0] - button_width/2 < abs < elem[0] + button_width/2: # Est ce que le curseur se trouve entre les coordonnées du bouton en largeur (x)
+            if elem[1] - button_height/2 < ord < elem[1] + button_height/2: # Si c'est le cas, Est-il aussi entre les coordonnées du bouton en ordonnée 
+                return i # Alors le curseur est sur ce bouton
     return False  
 
 
-def create_title(center_title, title_width_radius, title_height_radius):
+def create_title(center_title, title_width, title_height):
     """
     Une fonction qui va permettre de créer le titre du jeu sur fltk
     Paramètres:
@@ -54,15 +66,23 @@ def create_title(center_title, title_width_radius, title_height_radius):
         Le titre du jeu sur fltk
     """
     game_name = 'S T A Y  A L I V E'
+    font_size = 0
+    taille = fltk.taille_texte(game_name, taille=font_size)
+    while taille[0] <= (title_width)*0.9:
+        taille = fltk.taille_texte(game_name, taille=font_size)
+        font_size += 1        
+        
     color_radiant = ["#00C7FF", "#00AEFF", "#0098FF", "#007FFF", "#0065FF"]
-    fltk.texte(center_title[0], center_title[1], game_name, couleur="#3498db", taille=50, ancrage="center", tag="Acceuil")
+    fltk.texte(center_title[0], center_title[1], game_name, couleur="#3498db", taille=font_size, ancrage="center", tag="Acceuil")
     #On trace des rectangles de + en + grand avec une couleur légèrement différente pour faire un dégradé de couleur 
     for i in range(5):
         color = color_radiant[i]
-        fltk.rectangle(center_title[0] - (title_width_radius + i), center_title[1] - (title_height_radius + i), 
-                       center_title[0] + (title_width_radius + i), center_title[1] + (title_height_radius + i), 
+        fltk.rectangle(center_title[0] - (title_width/2 + i), center_title[1] - (title_height/2 + i), 
+                       center_title[0] + (title_width/2 + i), center_title[1] + (title_height/2 + i), 
                        couleur= color, epaisseur=3, tag="Acceuil")
 
 
-    
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
    
