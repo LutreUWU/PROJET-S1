@@ -10,6 +10,9 @@ Toutes les informations sur comment lancer le programme / jouer aux jeux sont su
 
 Bonne lecture.
 """
+"""
+Reprendre à la ligne 97 pour les commentaires 
+"""
 import Modules.fltk as fltk
 # Ce module permet de faire la majorité des calculs (Centrer le jeu, La taille du jeu, la taille de la police ...)
 import Modules.math as calcu
@@ -78,18 +81,20 @@ while not Game and not Information and not Setting :
         fltk.efface("Acceuil")
         settings.main_settings(settingsGame, coord_settingButton, size_settingButton,
                                lessButton_coord, moreButton_coord, ButtonChange_size)
+        # On associe les nouvelles valeurs sauvegardées à nos Constantes
         NB_JOUEUR, NB_CASE, NB_BALLE = settingsGame[0], settingsGame[1], settingsGame[2]
         Setting = False
-
-    fltk.efface("Acceuil") # On efface tout pour actualiser la page
-    # On affiche le titre du jeu
+    # Donc on réactualise la page pour afficher la page d'acceuil 
+    fltk.efface("Acceuil") 
+    # On affiche le titre et les boutons du jeu
     acceuil.create_title(center_title, title_width, title_height)
-    # On affiche les boutons en fonctions de la réponse de hover
     acceuil.create_menu(button_width, button_height, coordinate_button, hover)
-    fltk.mise_a_jour() # On actualise le jeu
+    fltk.mise_a_jour() 
 
-# On supprime le menu et on crée le plateau de jeu
+# Si on arrive ici ça veut dire qu'on a cliqué sur Play
+# Donc on efface la page d'acceuil
 fltk.efface("Acceuil")
+# Tous les paramètres pour créer le jeu 
 boxDimensions, margin, coordinateNW = calcu.size_box(LARGEUR, HAUTEUR, NB_CASE)  
 tirette_h, tirette_v = tirette.creation_tirette(NB_CASE)
 compteur_tiretteh, compteur_tirettev = tirette.create_CompteurTirette(tirette_h, tirette_v)
