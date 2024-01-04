@@ -1,6 +1,59 @@
 if __name__ != "__main__":
     import Modules.fltk as fltk
 
+def main_settings(settingGame:list, coordButton:list, sizeButton:tuple,
+                  lessButton_coord:list, moreButton_coord:list, ButtonChange_size:tuple):
+    """
+    Fonction principale qui va afficher la page des paramètres où on pourra modifier le nb de joueur, case
+    et de balle dans la partie.Ces paramètres seront conservés lorsqu'on va quitter la page setting
+
+    Args:
+        settingGame: Une liste de int avec les constantes qu'on peu modifier [NB_JOUEUR, NB_CASE, NB_BALLE]
+        coordButton: Une liste de tuple avec les coordonnées (x,y) de chaque boutons 
+        sizeButton: Un tuple avec la Largeur et la Hauteur du bouton 
+        lessButton_coord: Une liste de tuple avec les coordonnées (x,y) de chaque "-"
+        moreButton_coord: Une liste de tuple avec les coordonnées (x,y) de chaque "+"
+        ButtonChange_size: Un tuple avec la Largeur et la Hauteur des boutons "-" et "+"
+    """
+    # On affiche la page avec les paramètres grâce à fltk
+    page_settings(coordButton, sizeButton, settingGame,
+                  lessButton_coord, moreButton_coord, ButtonChange_size)
+    # Boucle qui va nous permettre de modifier les paramètres
+    Setting_page = True
+    while Setting_page:
+        click = fltk.donne_ev()
+        type_click = fltk.type_ev(click)
+        if type_click == 'Quitte':
+            fltk.ferme_fenetre()
+        # Chaque fois qu'on clique à gauche on va vérifier si on a touché un des 3 boutons "-" ou "+"
+        if type_click == 'ClicGauche':
+            abs = fltk.abscisse_souris()
+            ord = fltk.ordonnee_souris()
+            # Car y a 3 boutons où on peut augmenter et diminuer 
+            for i in range(3):
+                # Si on clique sur le bouton "-" 
+                if lessButton_coord[i][0] - ButtonChange_size[0]/2  < abs < lessButton_coord[i][0] + ButtonChange_size[0]/2: # Comme pour les autres boutons on regarde si l'abscisse est entre une des 3 coordonnées des boutons "-"
+                    if lessButton_coord[i][1] - ButtonChange_size[0]/2 < ord < lessButton_coord[i][1] + ButtonChange_size[0]/2: # On regarde l'ordonnée aussi
+                        # Si c'est le cas alors on veut faire -1 aux paramètres du bouton où on a cliqué
+                        settingGame[i] -= 1
+                # Si on clique sur le bouton "+"
+                if moreButton_coord[i][0] - ButtonChange_size[0]/2  < abs < moreButton_coord[i][0] + ButtonChange_size[0]/2: # Pareil mais pour les "+"
+                    if moreButton_coord[i][1] - ButtonChange_size[0]/2 < ord < moreButton_coord[i][1] + ButtonChange_size[0]/2:
+                        # Si c'est le cas alors on veut faire +1 aux paramètres du bouton où on a cliqué
+                        settingGame[i] += 1
+            # On efface toute la page et on réactualise les nouveaux paramètres
+            fltk.efface("settings")
+            page_settings(coordButton, sizeButton, settingGame,
+                          lessButton_coord, moreButton_coord, ButtonChange_size)
+            # On vérifie séparément le bouton Save (Car le bouton n'a pas les même dimensions que les autres)
+            if coordButton[3][0] - ButtonChange_size[0] < abs < coordButton[3][0] + ButtonChange_size[0]:
+                    if coordButton[3][1] - ButtonChange_size[0]/2 < ord < coordButton[3][1] + ButtonChange_size[0]/2:
+                        # Si c'est le cas alors on sauvegarde les paramètres obtenus et on quitte la boucle Setting
+                        fltk.efface("settings")
+                        Setting_page = False
+        fltk.mise_a_jour()
+
+
 def page_settings(coordButton:list, sizeButton:tuple, settings:list,
                   lessButton_coord:list, moreButton_coord:list, ButtonChange_size:tuple):
     """
@@ -69,56 +122,3 @@ def page_settings(coordButton:list, sizeButton:tuple, settings:list,
         # On affiche le texte prévu dans chacun des boutons du milieu
         fltk.texte(coordButton[i][0], coordButton[i][1], liste_button[i], couleur='black', ancrage="center", taille=font_size, tag='settings')
         
-
-def main_settings(settingGame:list, coordButton:list, sizeButton:tuple,
-                  lessButton_coord:list, moreButton_coord:list, ButtonChange_size:tuple):
-    """
-    Fonction principale qui va afficher la page des paramètres où on pourra modifier le nb de joueur, case
-    et de balle dans la partie.Ces paramètres seront conservés lorsqu'on va quitter la page setting
-
-    Args:
-        settingGame: Une liste de int avec les constantes qu'on peu modifier [NB_JOUEUR, NB_CASE, NB_BALLE]
-        coordButton: Une liste de tuple avec les coordonnées (x,y) de chaque boutons 
-        sizeButton: Un tuple avec la Largeur et la Hauteur du bouton 
-        lessButton_coord: Une liste de tuple avec les coordonnées (x,y) de chaque "-"
-        moreButton_coord: Une liste de tuple avec les coordonnées (x,y) de chaque "+"
-        ButtonChange_size: Un tuple avec la Largeur et la Hauteur des boutons "-" et "+"
-    """
-    # On affiche la page avec les paramètres grâce à fltk
-    page_settings(coordButton, sizeButton, settingGame,
-                  lessButton_coord, moreButton_coord, ButtonChange_size)
-    # Boucle qui va nous permettre de modifier les paramètres
-    Setting_page = True
-    while Setting_page:
-        click = fltk.donne_ev()
-        type_click = fltk.type_ev(click)
-        if type_click == 'Quitte':
-            fltk.ferme_fenetre()
-        # Chaque fois qu'on clique à gauche on va vérifier si on a touché un des 3 boutons "-" ou "+"
-        if type_click == 'ClicGauche':
-            abs = fltk.abscisse_souris()
-            ord = fltk.ordonnee_souris()
-            # Car y a 3 boutons où on peut augmenter et diminuer 
-            for i in range(3):
-                # Si on clique sur le bouton "-" 
-                if lessButton_coord[i][0] - ButtonChange_size[0]/2  < abs < lessButton_coord[i][0] + ButtonChange_size[0]/2: # Comme pour les autres boutons on regarde si l'abscisse est entre une des 3 coordonnées des boutons "-"
-                    if lessButton_coord[i][1] - ButtonChange_size[0]/2 < ord < lessButton_coord[i][1] + ButtonChange_size[0]/2: # On regarde l'ordonnée aussi
-                        # Si c'est le cas alors on veut faire -1 aux paramètres du bouton où on a cliqué
-                        settingGame[i] -= 1
-                # Si on clique sur le bouton "+"
-                if moreButton_coord[i][0] - ButtonChange_size[0]/2  < abs < moreButton_coord[i][0] + ButtonChange_size[0]/2: # Pareil mais pour les "+"
-                    if moreButton_coord[i][1] - ButtonChange_size[0]/2 < ord < moreButton_coord[i][1] + ButtonChange_size[0]/2:
-                        # Si c'est le cas alors on veut faire +1 aux paramètres du bouton où on a cliqué
-                        settingGame[i] += 1
-            # On efface toute la page et on réactualise les nouveaux paramètres
-            fltk.efface("settings")
-            page_settings(coordButton, sizeButton, settingGame,
-                          lessButton_coord, moreButton_coord, ButtonChange_size)
-            # On vérifie séparément le bouton Save (Car le bouton n'a pas les même dimensions que les autres)
-            if coordButton[3][0] - ButtonChange_size[0] < abs < coordButton[3][0] + ButtonChange_size[0]:
-                    if coordButton[3][1] - ButtonChange_size[0]/2 < ord < coordButton[3][1] + ButtonChange_size[0]/2:
-                        # Si c'est le cas alors on sauvegarde les paramètres obtenus et on quitte la boucle Setting
-                        fltk.efface("settings")
-                        Setting_page = False
-        fltk.mise_a_jour()
-

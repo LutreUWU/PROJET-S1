@@ -13,19 +13,17 @@ def main_information(LARGEUR_windows, HAUTEUR_windows):
     """
     # Une liste de texte, où chaque élément est une ligne de texte
     list_text = [
-        "The objective of this project is to implement a multi-player strategy game called",           
-        "Traps! (Stay alive! in English), developed by Milton Bradley in 19711.",
-        "Figure 1: An example part", 
-        "1 Rules of the game", 
-        "The game consists of a 7×7 grid, with 14 zippers, 7 horizontal (orange)", 
-        "and 7 vertical (white). Each zipper has a fixed number of holes, and can", 
-        "be placed in three positions, by pushing or pulling on its ends. HAS", 
-        "each point of the grid, when two holes are superimposed (that of the zipper", 
-        "vertical and that of the horizontal pull), the ball located above falls, and the", 
-        "player loses his ball. The game is played with 2, 3 or 4 players, each having 5", 
-        "1Stay Alive, official website for the game. See also the 1994 French ad.", 
-        "1 balls of your chosen color. The objective of the game is to be the last player to have", 
-        "at least one ball on the board."]
+        "Le but du projet est de coder un jeu multijouer nommé 'Stay Alive'",           
+        "crée par Milton Bradley en 1971, où on doit faire tomber des billes",
+        "Comment marche le jeu dans notre code ?", 
+        "Le jeu se déroule dans une grille de jeu avec des tirettes verticales et horizontales.", 
+        "On peut changer le nombre de Joueur, les dimensions de la grilles, et les balles/joueurs", 
+        "Par défault on à 2 joueurs sur une grille de 7x7 avec 2 balles chacuns", 
+        "Les tirettes horizontales sont roses, et les verticales sont blanches.", 
+        "Les chiffres indiquent le cran de chaque tirette, on peut bouger que d'un cran par tour", 
+        "Par exemple si on veut déplacer une tirette vers le bas alors on clique sur le bas de la grille", 
+        "Lorsqu'il reste 1 seule joueur en vie, le jeu s'arrête et affiche le vainqueur", 
+        " Plus de détails dans le rapport :) "]
     font_size = 1
     LongestSentence = ""
     # Pour chaque élément dans la liste, on va chercher la ligne de texte la plus longue
@@ -34,7 +32,7 @@ def main_information(LARGEUR_windows, HAUTEUR_windows):
             LongestSentence = elem
     # Puis on utilise la fonction qui permet de trouver la taille de police, mais en fonction de la LARGEUR de la fenêtre
     taille = fltk.taille_texte(LongestSentence, taille=font_size)
-    while taille[0] <= LARGEUR_windows*0.9: #90% de la largeur comme ça on à une marge avec le bord de la fenêtre
+    while taille[0] <= LARGEUR_windows*0.95: #95% de la largeur comme ça on à une marge avec le bord de la fenêtre
         font_size += 1 
         taille = fltk.taille_texte(LongestSentence, taille=font_size)
     # Après avoir obtenu la taille, on affiche chaque ligne de texte

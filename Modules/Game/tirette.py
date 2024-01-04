@@ -3,33 +3,19 @@ from random import choice
 def creation_tirette(NB_CASE:int):
     """
     Fonction qui va créer la liste des tirettes horizontale et verticale avec des valeurs booléennes, 
-    elle va aussi optimiser la tirette afin qu'on puisse toujours terminer le jeu
+    elle va aussi appeler la fonction pour optimiser la tirette afin qu'on puisse toujours terminer le jeu.
     
     Paramètres:
         NB_CASE : Nombre de case 
-        
     Return:
-        La liste des tirettes horizontales et verticales 
-     
-    >>> def foo(NB_CASE):
-    ...     x = False
-    ...     tirette_h, tirette_v = creation_tirette(NB_CASE)
-    ...     for a in tirette_h:
-    ...         for i in range(2, len(a)):
-    ...             if not a[i]:
-    ...                 for j in range(1, 2):
-    ...                     if a[i - j]:
-    ...                         x = True
-    ...     y = False
-    ...     for ligne in range(NB_CASE):
-    ...         for colonne in range(NB_CASE + 2):
-    ...             if not tirette_v[colonne][ligne]:
-    ...                 for j in range(1, 2):
-    ...                     if tirette_v[colonne - j][ligne]:
-    ...                         y = True
-    ...     return (x, y)
-    ...
+        all_tirette_h : Liste où chaque élément est une liste d'élément booléenne, True = Y a un trou, False = Y a une tirette horizontale
+        all_tirette_v : Liste où chaque élément est une liste d'élément booléenne, True = Y a un trou, False = Y a une tirette verticale 
     
+    Doctest compliqués à faire car les valeurs sont aléatoires, mais on aura toujours maximum 2 False de suite dans une tirette.
+    Ex : [False, False, True, False, False, True, False, True, False]
+    Il peut y avoir que des True.
+    Ex : [True, False, True, True, True, True, True, True, False]
+    >>>
     """
     all_tirette_h, all_tirette_v = [], []
     max_push = 2 # Car on peut tirer 2 fois d'un côté max 
@@ -100,6 +86,7 @@ def create_CompteurTirette(tirette_h:list, tirette_v:list):
     """
     Fonction qui permet d'associer à chaque tirette un compteur, 
     pour savoir combien de fois on peut tirer à gauche, à droite, en haut, en bas.
+    (Par défault elles sont de 2 à gauche et 2 en haut)
     
     Paramètres:
         tirette_h: La liste de True et de False pour les tirettes horizontales
@@ -110,7 +97,7 @@ def create_CompteurTirette(tirette_h:list, tirette_v:list):
         allCompteurY: Liste de dictionnaire avec le compteur haut et bas de chaque tirette verticale (1 de chaque côté par défault)
 
     >>> create_CompteurTirette([True, True], [True, False])
-    ([{'gauche': 1, 'droite': 1}, {'gauche': 1, 'droite': 1}], [{'haut': 1, 'bas': 1}, {'haut': 1, 'bas': 1}])
+    ([{'gauche': 2, 'droite': 0}, {'gauche': 2, 'droite': 0}], [{'haut': 2, 'bas': 0}, {'haut': 2, 'bas': 0}])
     """
     
     allCompteurX, allCompteurY = [], []
@@ -122,69 +109,65 @@ def create_CompteurTirette(tirette_h:list, tirette_v:list):
         allCompteurY.append(compteur)
     return allCompteurX, allCompteurY
     
-def click_opposer(save_click:list, prochain_click:list):
-    """
-    Fonction qui verifie si le joueur n'a pas cliqué sur le côté opposer
-    et renvoie True si c'est le cas sinon False
-    
-    Paramètres:
-        save_click: 
-    >>> click_opposer([1, 2], ["gauche", 2])
-    False
-    >>> click_opposer([1, 2], ["droite", 3])
-    False
-    >>> click_opposer([1, 2], ["droite", 1])
-    False
-    >>> click_opposer([1, 2], ["droite", 2])
-    True
-    """
-    if prochain_click[0] == "gauche":
-        click, prochain_click[0] = 1, 1
-    elif prochain_click[0] == "droite":
-        click, prochain_click[0] = -1, -1
-    elif prochain_click[0] == "haut":
-        click, prochain_click[0] = 2, 2
-    elif prochain_click[0] == "bas":
-        click, prochain_click[0] = -2, -2
-    else:
-        click = save_click[0]
-    if click == -save_click[0] and prochain_click[1] == save_click[1]:
-        return True
-    for a in range(len(save_click)):
-        save_click[a] = prochain_click[a]
-    return False
 
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
     
-def working_compteurTirette(click_tirette, compteur_tiretteh, compteur_tirettev, NB_CASE, playerTurn, forbidden_click):
+def working_compteurTirette(click_tirette:list, compteur_tiretteh:list, compteur_tirettev:list, NB_CASE:int,
+                            playerTurn: int, forbidden_click: list):
+    """
+    Fonction qui va modifier le compteur de la tirette où on a cliqué en fonction de l'endroit qu'on a cliqué
+    Args:
+        click_tirette (_list_): LISTE qui contient l'indice [x, y] du compteur qu'on a cliqué 
+        compteur_tiretteh (_list_): Liste de dictionnaire avec le compteur gauche et droite de chaque tirette horizontale (1 de chaque côté par défault)
+        compteur_tirettev (_list_): Liste de dictionnaire avec le compteur haut et bas de chaque tirette verticale (1 de chaque côté par défault)
+        NB_CASE (_int_): Nombre de cases
+        playerTurn (_int_): Int qui réprésente l'index du joueur qui joue dans la "playerlist"
+        forbidden_click (_list_): LISTE qui contient l'indice [x, y] du compteur dont on ne peut pas cliqué car c'est son opposé
+
+    Returns:
+        forbidden_click : LISTE qui contient l'indice [x, y] du compteur dont on ne peut pas cliqué car c'est son opposé
+        playerTurn: Int Int qui réprésente l'index du joueur suivant qui joue dans la "playerlist" après qu'on ai déplacé les tirettes
+    >>> working_compteurTirette([8, 0], [{'gauche': 2, 'droite': 0}, {'gauche': 2, 'droite': 0}, {'gauche': 2, 'droite': 0}, {'gauche': 2, 'droite': 0}, {'gauche': 2, 'droite': 0}, {'gauche': 2, 'droite': 0}, {'gauche': 2, 'droite': 0}], [{'haut': 2, 'bas': 0}, {'haut': 2, 'bas': 0}, {'haut': 2, 'bas': 0}, {'haut': 2, 'bas': 0}, {'haut': 2, 'bas': 0}, {'haut': 2, 'bas': 0}, {'haut': 2, 'bas': 0}], 7, 0, None)
+    ([-1, 0], 1)
+    >>> working_compteurTirette([-1, 0], [{'gauche': 1, 'droite': 1}, {'gauche': 2, 'droite': 0}, {'gauche': 2, 'droite': 0}, {'gauche': 2, 'droite': 0}, {'gauche': 2, 'droite': 0}, {'gauche': 2, 'droite': 0}, {'gauche': 2, 'droite': 0}], [{'haut': 2, 'bas': 0}, {'haut': 2, 'bas': 0}, {'haut': 2, 'bas': 0}, {'haut': 2, 'bas': 0}, {'haut': 2, 'bas': 0}, {'haut': 2, 'bas': 0}, {'haut': 2, 'bas': 0}], 7, 1, None)
+    ([8, 0], 2)
+    """
+    # On regarde d'abord si on a pas cliqué sur le compteur interdit
     if click_tirette == forbidden_click:
         return forbidden_click, playerTurn
+    # Si on a cliqué sur un compteur, click_tirette renvoie une liste, donc on vérifie
     if type(click_tirette) == list:
-            if click_tirette[0] < 0 and compteur_tiretteh[click_tirette[1]]["gauche"] <= -click_tirette[0]:
-                if click_tirette[0] == -1 and compteur_tiretteh[click_tirette[1]]["gauche"] < 2 :
+        # Puis on vérifie qu'on a bien cliqué sur une tirette qu'on peut tirer
+            # On regarde à gauche
+            if click_tirette[0] < 0: 
+                if click_tirette[0] == -1 and compteur_tiretteh[click_tirette[1]]["gauche"] < 2 : # Il faut que la tirette de gauche soit à 1 cran ou 0 pour pouvoir la tirer
+                    # Si c'est le cas alors on peut modifier la tirette et passer au tour du joueur suivant
                     compteur_tiretteh[click_tirette[1]]["gauche"] += 1
                     compteur_tiretteh[click_tirette[1]]["droite"] -= 1
-                    forbidden_click = [abs(click_tirette[0] - NB_CASE), click_tirette[1]]
+                    forbidden_click = [abs(click_tirette[0] - NB_CASE), click_tirette[1]] # On modifie la case interdite
                     playerTurn += 1
                     return forbidden_click, playerTurn
-            elif click_tirette[0] > NB_CASE and compteur_tiretteh[click_tirette[1]]["droite"] <= click_tirette[0]:
-                if click_tirette[0] == NB_CASE + 1 and compteur_tiretteh[click_tirette[1]]["droite"] < 2 :
+            # On regarde à droite
+            elif click_tirette[0] > NB_CASE:
+                if click_tirette[0] == NB_CASE + 1 and compteur_tiretteh[click_tirette[1]]["droite"] < 2 : # Il faut que la tirette de droite soit à 1 cran ou 0 pour pouvoir la tirer
                     compteur_tiretteh[click_tirette[1]]["gauche"] -= 1
                     compteur_tiretteh[click_tirette[1]]["droite"] += 1
                     forbidden_click = [-(click_tirette[0] - NB_CASE), click_tirette[1]]
                     playerTurn += 1
                     return forbidden_click, playerTurn
-            elif click_tirette[1] < 0 and compteur_tirettev[click_tirette[0]]["haut"] <= -click_tirette[1]:
-                if click_tirette[1] == -1 and compteur_tirettev[click_tirette[0]]["haut"] < 2 :
+            # On regarde en haut
+            elif click_tirette[1] < 0:
+                if click_tirette[1] == -1 and compteur_tirettev[click_tirette[0]]["haut"] < 2 : # Il faut que la tirette de haut soit à 1 cran ou 0 pour pouvoir la tirer
                     compteur_tirettev[click_tirette[0]]["haut"] += 1
                     compteur_tirettev[click_tirette[0]]["bas"] -= 1
                     forbidden_click = [click_tirette[0], abs(click_tirette[1] - NB_CASE)]
                     playerTurn += 1
                     return forbidden_click, playerTurn
-            elif click_tirette[1] > NB_CASE and compteur_tirettev[click_tirette[0]]["bas"] <= click_tirette[1]:
-                if click_tirette[1] == NB_CASE + 1 and compteur_tirettev[click_tirette[0]]["bas"] < 2 :
+            # On regarde en bas
+            elif click_tirette[1] > NB_CASE:
+                if click_tirette[1] == NB_CASE + 1 and compteur_tirettev[click_tirette[0]]["bas"] < 2 : # Il faut que la tirette de bas soit à 1 cran ou 0 pour pouvoir la tirer
                     compteur_tirettev[click_tirette[0]]["haut"] -= 1
                     compteur_tirettev[click_tirette[0]]["bas"] += 1
                     forbidden_click = [click_tirette[0], -(click_tirette[1] - NB_CASE)]
@@ -192,4 +175,6 @@ def working_compteurTirette(click_tirette, compteur_tiretteh, compteur_tirettev,
                     return forbidden_click, playerTurn
     return forbidden_click, playerTurn
 
-        
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
