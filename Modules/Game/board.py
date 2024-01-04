@@ -1,6 +1,58 @@
 if __name__ != "__main__":
     import Modules.fltk as fltk
 
+import time
+def verif_nombre_place(NB_BALLE:int, NB_JOUEUR:int, tirette_h:list, tirette_v:list):
+    """
+    Fonction qui va verifier si le nombre de balle que les joueurs
+    doivent place est possible sur le plateau généré
+    
+    Paramètres:
+        NB_BALLE : Nombre de balle par joueur
+        NB_JOUEUR : Nombre de joueur
+        tirette_h: La liste de True et de False pour les tirettes horizontales
+        tirette_v: La liste de True et de False pour les tirettes verticales
+    Return:
+        Le nombre de balle par joueur, modifié par le code afin qu'on puisse jouer au jeu
+    
+    Les doctest marchent si on retire les fltk (Il y a un problème pour importer fltk car il est pas dans le même dossier)
+    >>> verif_nombre_place(1, 3, [[False, True], [False, False]], [[False, True], [False, False]])
+    
+    >>> verif_nombre_place(2, 3, [[False, True], [False, False]], [[False, True], [False, False]])
+    1
+    >>> verif_nombre_place(100, 3, [[False, True], [False, False]], [[False, True], [False, False]])
+    1
+    """
+    nb_case = len(tirette_h) # Pour éviter d'ajouter le paramètre NB_CASE
+    nb_balle_dispo = 0
+    # On regarde chaque case, et s'il y a une tirette alors on ajoute +1 au nombre de balle possible
+    for i in range(nb_case):
+        for j in range(nb_case):
+            if (not tirette_h[i][j]) or (not tirette_v[i][j]):
+                nb_balle_dispo += 1
+    # Si le nombre de balle possible est inférieur au nombre de balle qu'on doit placer au total
+    if nb_balle_dispo <= NB_BALLE*NB_JOUEUR:
+        # Alors on affiche un texte qui nous informe que la valeur a été réduite
+        HAUTEUR = fltk.hauteur_fenetre()
+        LARGEUR = fltk.largeur_fenetre()
+        chaine = f"Le nombre de balle par joueur a été réduit à {nb_balle_dispo // NB_JOUEUR} "
+        # On utilise la fonction qui permet de trouver la taille de la police en fonction de la largeur d'un bouton;
+        font_size = 1
+        taille = fltk.taille_texte(chaine, taille=font_size) # on prend la taille du texte le plus long pour avoir la même taille
+        while taille[0] <= LARGEUR*0.8: # 0.7 pour avoir de la marge entre le bouton
+            font_size += 1 
+            taille = fltk.taille_texte(chaine, taille=font_size)
+        
+        fltk.texte(LARGEUR / 2, HAUTEUR / 2, chaine, "black", taille=font_size, ancrage="center", tag="warning")
+        fltk.mise_a_jour()
+        time.sleep(2)
+        fltk.efface("warning")
+        # Et on return la nouvelle valeur pour jouer au jeu
+        return nb_balle_dispo // NB_JOUEUR
+    return NB_BALLE
+        
+
+
 def board_game(tile_hori:int, tile_verti:int, boxSize:tuple, coordinateNW:tuple):
     """
     Cette fonction qui va créer la liste nécessaire pour créer

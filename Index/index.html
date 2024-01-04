@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="CSS/general.css">
+  <link rel="stylesheet" href="CSS/title.css">
+  <link rel="stylesheet" href="CSS/container.css">
+
+</head>
+
+<body>
+    <div class="SparkleDiv"></div>
+    <script src="JS/confetti.js"></script>
+    <div id="background">
+        <img src="res/BG.jpg" class="bg">
+    </div>
+    <div class="Title text-overlay-neon">
+        <div style="margin-top: 1px;">R</div>
+        <div style="margin-top: -1px;">A</div>
+        <div style="margin-top: 2px;">P</div>
+        <div>P</div>
+        <div style="margin-top: -2px;">O</div>
+        <div>R</div>
+        <div> T</div>
+        <div style="margin-left:1%">P</div>
+        <div style="margin-top: 1px;">R</div>
+        <div style="margin-top: -2px;">O</div>
+        <div style="margin-top: 2px;">J</div>
+        <div style="margin-top: -1px;">E</div>
+        <div style="margin-top: 2px;">T</div>
+    </div>
+
+    <div class="container">
+        <p class="profilTitle">Participants au Projets:</p>
+        <div class="profilDiv">
+            <div class="profilImage">
+                <div class="ppDIV">
+                    <img class="pp" src="res/pp.gif">
+                    <p style="margin:0">DISCORD: Davideuh</p>
+                </div>
+                <div class="profilText">
+                    <h1 class="profilName" style="letter-spacing:2px;text-align:center">David</h1>
+                    <h4>• Génération de la grille et amélioration du code en général</h4>
+                    <h4>• Optimisation du jeu peu importe la taille.</h4>
+                    <h4>• Docstrings & Doctests.</h4>
+                    <h4>• Rapport Projet.</h4>
+                </div>
+            </div>
+            <div class="profilImage">
+                <div class="ppDIV">
+                    <img class="pp" style="object-position: top" src="res/PPabdel.jpg">
+                    <p style="margin:0">DISCORD: abdel_kader05</p>
+                </div>
+                <div class="profilText">
+                    <h1 class="profilName" style="letter-spacing:2px;text-align:center">Abdelkader</h1>
+                    <h4>• Gestion des tirettes.</h4>
+                    <h4>• Gestion compteurs tirettes</h4>
+                    <h4>• Placement des balles dans le jeu</h4>
+                    <h4>• Création des joueurs</h4>
+                </div>
+            </div>
+            <div class="profilImage">
+                <div class="ppDIV">
+                    <img class="pp" src="res/PPwalid.jpg">
+                    <p style="margin:0">DISCORD: ramtaniwalid</p>
+                </div>
+                
+                <div class="profilText">
+                    <h1 class="profilName" style="letter-spacing:2px;text-align:center">Walid</h1>
+                    <h4>• Création de l'interface (Acceuil, bouton ...)</h4>
+                    <h4>• Calculs mathématiques</h4>
+                    <h4>• Optimisation du code</h4>
+                    <h4>• Aide à l'optimisation du jeu peu importe la taille.</h4>
+                </div>
+            </div>
+        </div>
+        <p class="profilTitle"> Comment marche le jeu ?</p>
+        <div class="ChapDiv" style="height:20vh">
+            <div class="chapImg">
+                <p style="margin:0;width:100%; color:black; font-size:1.4em; z-index:1; position:absolute;"> Exemple:</p>
+               <img class="chapImgEdit" src="res/TutoAcceuil.gif">
+            </div>
+            <div class="chapText" >
+                <h1 style="margin-top:0; text-decoration:underline">La page d'acceuil</h1>
+                <p>Pour lancer le programme, rien de plus simple, il faut lancer le fichier "piege.py".</p>
+                <p>Seul la LARGEUR et la HAUTEUR de la fenêtre doit être modifier dans le programme</p>
+                <p style="margin-top:1%">La page d'acceuil fonctionne normalement, si on clique sur un bouton, ça nous affiche le bouton donnée !</p>
+                <p>On peut changer les paramètres du settings en appuyant dessus</p>
+                <p>A savoir que si on a mit un nombre de balle dans les paramètres, le jeu nous avertis qu'il a changé lui même le nombre de balle afin que toute les balles soient placés.</p>
+            </div>
+        </div>
+        <div class="ChapDiv" style="height:20vh; justify-content:space-between">
+            <div class="chapText" >
+                <h1 style="margin-top:0; text-decoration:underline">Le placement des balles</h1>
+                <p>- Pour placer les balles il faut cliquer sur l'une des cases présentes</p>
+                <p>- Si on clique sur un compteur tirette, ou dans le vide, rien ne se passe</p>
+                <p>- On a fait en sorte que rien ne se passe aussi, si vous cliquez entre les cases</p>
+            </div>
+            <div class="chapImg">
+                <p style="margin:0;width:100%; color:black; font-size:1.4em; z-index:1; position:absolute;"> Exemple:</p>
+               <img class="chapImgEdit" src="res/TutoBall.gif">
+            </div>
+        </div>
+        <div class="ChapDiv" style="height:25vh">
+            <div class="chapImg">
+                <p style="margin:0;width:100%; color:black; font-size:1.4em; z-index:1; position:absolute;"> Exemple:</p>
+               <img class="chapImgEdit" src="res/TutoGame.gif">
+            </div>
+            <div class="chapText" >
+                <h1 style="margin-top:0; text-decoration:underline">Le fonctionnement du jeu</h1>
+                <p>Comment marche les tirettes ? Rappel, on peut tirer qu'une fois par tour, et on ne pas cliquer sur la tirette opposé du tour précédent</p>
+                <p style="margin-top:1%">- Les compteurs tirettes sont représentés par des petit cercles de valeurs 1 ou 2, on ne peut cliquer que sur le petit cercle 1, le 2 est seulement informative</p>
+                <p>- Si on veut déplacer la tirette à droite, dans la vraie vie, on va tirer la tirette de droite, donc c'est ce qu'on fait</p>
+                <p>- On doit cliquer PRECISEMENT sur le cercle du 1 pour pouvoir déplacer la tirette.</p>
+                <p>- Dans le cas où la tirette est à 0, on doit tirer à l'endroit où devrait y avoir le petit cercle 1 normalement (Donc on clique sur un cercle invisible).</p>
+            </div>
+        </div>
+
+
+        <p class="profilTitle">Histoire du projet, Chapitre 1: Le début</p>
+        <div class="ChapDiv" style="justify-content:space-between">
+            <div class="chapText" >
+                <h1 style="margin-top:0; text-decoration:underline">4 Décembre 2023</h1>
+                <p>Début du projet, on a déja établit les parties les plus importantes et longue à réaliser, c'est à dire : La grille, Les tirettes et les balles.</p>
+                <p>Comme on possède tous les 3 de bonne bases sur Python on ne s'est pas contenté de faire un jeu fonctionnel. On a imposé des règles supplémentaires.</p>
+                <p style="margin-top:1%">• Le jeu doit être beau, on ne veut pas que la grille soit juste un grand carré avec des "sous-carrés".</p>
+                <p>• Le jeu doit s'adapter à toute les tailles, donc AUCUNE constantes dans le code. (Spoiler: C'était LONG A FAIRE)</p>
+                <p>• Une page paramètre où on peut modifier certaines données (Joueurs, cases, balles ...)</p>
+                <p style="margin-top:1%">C'est ainsi qu'on s'est répartit les tâches de la manière suivante:</p>
+                <p style="margin-top:1%">• Abdelkader va s'occuper en priorité des bases du jeu (Fonctionnement des balles, tirettes ...) </p>
+                <p>• Moi (David), je m'occupe de la partie graphique et de l'optimisation du jeu peu importe la taille</p>
+                <p>• Walid s'occupe de la création de la page d'acceuil ainsi que le fonctionnement de la page paramètre.</p>
+                <p style="margin-top:1%">Et c'est ainsi que le projet a commencé ...</p>
+
+            </div>
+            <div class="chapImg">
+                <p style="margin:0;width:100%; color:black; font-size:1.4em; z-index:1; position:absolute;"> Debut de la grille</p>
+               <img class="chapImgEdit" src="res/ProjetAvancement/ChapOne.png">
+            </div>
+        </div>
+        <div class="ChapDiv" >
+            <div class="chapImg">
+                <p style="margin:0;width:100%; color:black; font-size:1.4em; z-index:1; position:absolute;"> Tirettes et balles</p>
+               <img class="chapImgEdit" src="res/ProjetAvancement/ChapOneSecond.png">
+            </div>
+            <div class="chapText">
+                <h1 style="margin-top:0; text-decoration:underline">5 Décembre 2023</h1>
+                <p>On avance progressivement, on se met d'accord pour faire une liste de tirette et une liste de case </p>
+                <p>On a déja la liste pour créer la grille, la liste pour créer les tirettes et la création de la balle quand on clique sur une case</p>
+                <p>Sauf qu'il manque plusieurs choses</p>
+                <p style="margin-top:1%">• Y a toujours pas les tirettes qu'on doit tirer</p>
+                <p>• Les tirettes sont aléatoires et ne sont pas du tout optimisés (Il peut y avoir 5 tirettes d'affilées)</p>
+                <p>• Pour placer les balles on parcourt toute la liste de la grille, ce qui n'est pas très optimal</p>
+                <p style="margin-top:1%">Comment résoudre chacun des problèmes ?</p>
+                <p style="margin-top:1%">• Pour les compteurs tirettes, pour l'instant on va s'occuper du fonctionnement sans l'affichage </p>
+                <p>• On va crée une fonction qui va vérifier les 2 tirettes de derrières et si elles ont toutes les 2 une tirette, alors on place un trou à la suivante</p>
+                <p>• On va faire une division euclidienne en divisant les coordonnées de la souris avec la taille de la case (Attention il y a la marge entre chaque cases à prendre en compte)</p>
+                <p style="margin-top:1%">Et c'est là que les problèmes ont commencé ...</p>
+            </div>
+        </div>
+        <p class="profilTitle">Chapitre 2: LES PROBLEMES</p>
+        <div class="ChapDiv" style="justify-content:space-between">
+            <div class="chapText">
+                <h1 style="margin-top:0; text-decoration:underline">19 Décembre 2023</h1>
+                <p> </p>
+                <p>La consigne du projet est terminé, on a nos balles, on peut tirer sur les tirettes ... Bien joué Abdelkader !</p>
+                <p>La page d'acceuil et les paramètres marchent parfaitement, bien joué Walid aussi !</p>
+                <p>Quand-est-il de ma partie à moi(David) ???????</p>
+                <p style="margin-top:1%">Il faut être honnête, j'ai pas tellement travaillé le projet jusqu'au vacance de Noël, Lorsque les vacances sont arrivés je me suis donc mis au boulot !</p>
+                <p>A cause de ma flemmardise excessive, il restait toujours des problèmes:</p>
+                <p>• Le compteur tirette est juste un chiffre, il faut dessiner quelque chose.</p>
+                <p>• Le jeu n'est pas encore optimisé en fonction de la taille.</p>
+                <p>• Les Docstrings & Doctests sont pauvres.</p>
+                <p style="margin-top:1%">Et c'est ainsi que je me motive pour finir ce code à jamais !</p>
+            </div>
+
+            <div class="chapImg">
+                <p style="margin:0;width:100%; color:black; font-size:1.4em; z-index:1; position:absolute;"> Tirettes et balles</p>
+               <img class="chapImgEdit" src="res/ProjetAvancement/ChapTwo.png">
+            </div>
+        </div>
+
+        <p class="profilTitle">Chapitre 3: LA FIN DU PROJET</p>
+        <div class="ChapDiv">
+            <div class="chapImg">
+                <p style="margin:0;width:100%; color:black; font-size:1.4em; z-index:1; position:absolute;"> Tirettes et balles</p>
+               <img class="chapImgEdit" src="res/ProjetAvancement/ChapThree.png">
+            </div>
+
+            <div class="chapText">
+                <h1 style="margin-top:0; text-decoration:underline">4 Janvier 2024 (Bonne année !)</h1>
+                <p>Oui oui, la veille de la date de rendu, je le termine (Quel timing !)</p>
+                <p>La page s'adapte parfaitement (Même la police d'écriture !) et le jeu est fluide, bien joué David !</p>
+                <p style="margin-top:1%"> Il ne me reste plus que le site à coder et le projet est terminé !</p>
+            </div>
+        </div>
+        <p class="profilTitle">Quelques améliorations faites sur le projet</p>
+        <div class="ChapDiv">
+            <div class="chapText" style="flex-basis:100%;">
+                <h2 style="margin-top:0;">- Bien optimisé peu importe la taille de la fenêtre.</h2>
+                <h2 style="margin-top:0;">- Chaque clique est précis.</h2>
+                <h2 style="margin-top:0;">- L'interface graphique est belle (Selon moi ^^).</h2>
+                <h2 style="margin-top:0;">- On peut voir combien de balle il nous reste, et aussi c'est au tour de quel joueurs.</h2>
+            </div>
+        </div>
+
+
+        <p class="profilTitle">Quelques Anectodes sur quelques galères qu'on a eu chacun</p>
+        <div class="ChapDiv" style="height:40vh">
+            <div class="chapText" style="flex-basis:100%">
+                <p style="margin:1%"><span style="text-decoration:underline">DISCLAIMER:</span> Toutes les remarques que je fais ne sont pas réelles, juste des remarques rigolotes qui me sont passés par la tête lors de la rédaction... (Mes amis vont très bien ne vous inquiétez pas =D )</p>
+                <h1 style="margin-top:0; text-decoration:underline">Le hover et les Settings (Walid)</h1>
+                <p>"oui pendant mon travail j'ai galéré au début sur comment rajouter le hover sur les boutons et pour affecter certains paramètres" <span style="font-style:italic">Walid, 3/01/24 à 22:31</span> </p>
+                <p>C'est ce que mon ami Walid, a dit mot pour mot lorsque je lui ai demandé son PIRE cauchemar sur le projet, je me demande s'il s'en ai remis aujourd'hui ...</p> 
+                <h1 style="margin-top:1%; text-decoration:underline">Les tirettes horizontales et verticales (AbdelKader)</h1>
+                <p>"La partie pour rendre la tirette horizontale non circulaire à été compliquée à  gérer à cause de problème de variable globale je pense." <span style="font-style:italic">Abdelkader, 4/01/24 à 4:03</span> </p>
+                <p>C'est comment Abdelkader m'a décrit la souffrance qu'était la gestion des tirettes, il était tellement dans la douleur qu'il a rédigé son message à 4h03, j'espère qu'il va mieux aujourd'hui ...</p>
+                <h1 style="margin-top:1%; text-decoration:underline">Les compteurs tirettes horizontales et verticales (Moi = David)</h1>
+                <p>"Est-ce-que je me suis vraiment embêté pendant une journée entière à faire en sorte que le clique se détecte seulement quand on clique à L'INTERIEUR DU PETIT CERCLE 1 ???, Bien évidemment" <span style="font-style:italic">David, 4/01/24, Maintenant</span> </p>
+                <p>C'est là quelques choses qui m'a le plus embêté pendant que je codais, je me suis acharné sur un truc dont on pouvait très bien faire sans.</p>
+                <p>J'ai galéré à pleins de choses évidemment (Détecter le clique dans une case sans parcourir la list et en ignorant la marge, Calculer la taille de la police en fonction de la taille de son boutton...)</p>
+            </div>
+        </div>
+    
+
+
+    </div>
+
+</body>
+

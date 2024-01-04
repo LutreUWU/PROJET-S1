@@ -16,7 +16,7 @@ def end_page(player:str, LARGEUR:int, HAUTEUR:int, color:str, ball:int):
     """
     # On a fltk.efface_tout(), donc on remet l'image de fond
     fltk.image(LARGEUR/2, HAUTEUR/2, 'res/bg.gif', largeur=int(LARGEUR*1.77), hauteur=HAUTEUR, ancrage='center')
-    winner = "winner is " + player + f" avec {ball} balles."
+    winner = "Winner is " + player + f" with {ball} balls."
     end = "V A I N Q U E U R"
     # On utilise la fonction qui permet de trouver la taille de la police en fonction de la Largeur de la fenêtre
     font_size = 1

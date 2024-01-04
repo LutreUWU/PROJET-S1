@@ -96,6 +96,7 @@ fltk.efface("Acceuil")
 boxDimensions, margin, coordinateNW = calcu.size_box(LARGEUR, HAUTEUR, NB_CASE) # Dimensions d'une cases, marge entre les cases, et les coordonnées NW de la grille de jeu
 tirette_h, tirette_v = tirette.creation_tirette(NB_CASE) # tirette_h et tirevve_v sont des listes de listes de booléenne
 compteur_tiretteh, compteur_tirettev = tirette.create_CompteurTirette(tirette_h, tirette_v) # Liste de dictionnaire où chaque dictionnaire est le compteur d'une tirette 
+NB_BALLE = board.verif_nombre_place(NB_BALLE, NB_JOUEUR, tirette_h, tirette_v)
 playerlist = player.player_setup([], NB_JOUEUR) # Liste où chaque élément est un dictionnaire avec les paramètres de chaque joueurs
 grid_lst = board.board_game(NB_CASE, NB_CASE, boxDimensions, coordinateNW) # Liste de liste de liste de 2 éléments (Un tuple (x,y) et une variable "0")
 # Une fois tous les paramètres obtenus on peut créer le jeu  

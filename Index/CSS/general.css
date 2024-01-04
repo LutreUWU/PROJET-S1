@@ -1,0 +1,68 @@
+
+body{
+    margin: 0;
+    overflow-x: hidden;
+    font-size: 1em; /* Modifier cette valeur pour changer la taille de police de tous les éléments (toujours mettre les valeurs en em*/
+    background-color: black;
+    z-index: -99;
+    position: relative;
+    font-family: 'VT323', monospace;
+    padding-bottom: 15%;
+  }
+
+.bg{
+    position: fixed;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    image-rendering: pixelated;
+    overflow: hidden;
+    z-index: -99;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #1f1f1f;
+    outline: 1px solid #16516e;
+    border-radius: 15px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    outline: 1px solid #1b6e97;
+  }
+  
+.SparkleDiv {
+    position: absolute;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.Sparkle{
+    position: absolute;
+    transform: scale(0);
+    animation: pop linear forwards
+  }
+  
+  @keyframes pop {
+    0%{
+      opacity: 0;
+    }
+  
+    20%{
+      opacity: 0.8;
+      transform: scale(1);
+  
+    }
+  
+    100%{
+      opacity: 0;
+     
+    }
+  }
