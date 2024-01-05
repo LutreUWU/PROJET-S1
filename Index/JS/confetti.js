@@ -1,3 +1,4 @@
+// CODE PAR DAVID
 var Sparkles = [];
 SparkleBackground = document.querySelector(".SparkleDiv")
 function generateSparkle() {

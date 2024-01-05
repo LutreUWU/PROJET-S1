@@ -1,3 +1,6 @@
+"""CODE FAIT PAR DAVID, ABDELKADER ET WALID."""
+
+
 if __name__ != "__main__":
     import Modules.fltk as fltk
 

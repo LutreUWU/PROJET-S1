@@ -1,3 +1,5 @@
+"""CODE FAIT PAR DAVID, ABDELKADER ET WALID."""
+
 from random import choice
 
 def creation_tirette(NB_CASE:int):

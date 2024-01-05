@@ -1,3 +1,6 @@
+"""CODE FAIT PAR DAVID, ABDELKADER ET WALID."""
+
+
 if __name__ != "__main__":
     import Modules.fltk as fltk
 
@@ -77,6 +80,8 @@ def page_settings(coordButton:list, sizeButton:tuple, settings:list,
     # On a placé un minimum, mais le programme marche même si on est en dessous (Vous pouvez modifier manuellement sur le main et vous verrez) 
     if settings[1] < 5: # On veut au moins 5 cases
         settings[1] = 5
+    if settings[1] > 20: # On veut au plus 20 cases (C'est une valeur fixe, au dessus les carrés deviennent trop petit)
+        settings[1] = 20 
     if settings[2] < 2: # On veut au moins 2 balles par joueur  
         settings[2] = 2
     # On récupère les valeurs de chaque paramètres

@@ -88,7 +88,7 @@
                <img class="chapImgEdit" src="res/TutoAcceuil.gif">
             </div>
             <div class="chapText" >
-                <h1 style="margin-top:0; text-decoration:underline">La page d'acceuil</h1>
+                <h1 style="margin-top:0; text-decoration:underline">La page d'acceuil (Voir l'image, pour mieux comprendre)</h1>
                 <p>Pour lancer le programme, il faut lancer le fichier "piege.py".</p>
                 <p>Seul la LARGEUR et la HAUTEUR de la fenêtre doit être modifier dans le code.</p>
                 <p style="margin-top:1%">La page d'acceuil fonctionne normalement, si on clique sur un bouton, ça nous affiche le bouton donné ! (Voir l'image)</p>
@@ -98,7 +98,7 @@
         </div>
         <div class="ChapDiv" style="height:20vh; justify-content:space-between">
             <div class="chapText" >
-                <h1 style="margin-top:0; text-decoration:underline">Le placement des balles (Voir l'image)</h1>
+                <h1 style="margin-top:0; text-decoration:underline">Le placement des balles (Voir l'image, pour mieux comprendre)</h1>
                 <p>- Pour placer les balles il faut cliquer sur l'une des cases présentes</p>
                 <p>- Si on clique sur un compteur tirette, ou dans le vide, rien ne se passe</p>
                 <p>- On a fait en sorte que rien ne se passe aussi, si vous cliquez entre les cases</p>
@@ -114,29 +114,29 @@
                <img class="chapImgEdit" src="res/TutoGame.gif">
             </div>
             <div class="chapText" >
-                <h1 style="margin-top:0; text-decoration:underline">Le fonctionnement du jeu</h1>
-                <p>Comment marche les tirettes ? Rappel, on peut tirer qu'une fois par tour, et on ne pas cliquer sur la tirette opposé du tour précédent</p>
-                <p style="margin-top:1%">- Les compteurs tirettes sont représentés par des petit cercles de valeurs 1 ou 2, on ne peut cliquer que sur le petit cercle 1, le 2 est seulement informative</p>
-                <p>- Si on veut déplacer la tirette à droite, dans la vraie vie, on va tirer la tirette de droite, donc c'est ce qu'on fait</p>
+                <h1 style="margin-top:0; text-decoration:underline">Le fonctionnement du jeu (Voir l'image, pour mieux comprendre)</h1>
+                <p>Comment marche les tirettes ? Rappel, on peut tirer qu'une fois par tour, et on ne peut pas cliquer sur la tirette opposé du tour précédent</p>
+                <p style="margin-top:1%">- Les compteurs tirettes sont représentés par des petit cercles de valeurs 1 ou 2, on ne peut cliquer que sur le petit cercle 1, le 2 est seulement visuel</p>
+                <p>- Si on veut déplacer la tirette à droite, on va tirer la tirette de droite, donc c'est ce qu'on fait dans le code</p>
                 <p>- On doit cliquer PRECISEMENT sur le cercle du 1 pour pouvoir déplacer la tirette.</p>
                 <p>- Dans le cas où la tirette est à 0, on doit tirer à l'endroit où devrait y avoir le petit cercle 1 normalement (Donc on clique sur un cercle invisible).</p>
             </div>
         </div>
 
 
-        <p class="profilTitle">Histoire du projet, Chapitre 1: Le début</p>
+        <p class="profilTitle">Historique du projet</p>
         <div class="ChapDiv" style="justify-content:space-between">
             <div class="chapText" >
                 <h1 style="margin-top:0; text-decoration:underline">4 Décembre 2023</h1>
                 <p>Début du projet, on a déja établit les parties les plus importantes et longue à réaliser, c'est à dire : La grille, Les tirettes et les balles.</p>
-                <p>Comme on possède tous les 3 de bonne bases sur Python on ne s'est pas contenté de faire un jeu fonctionnel. On a imposé des règles supplémentaires.</p>
+                <p>Comme on possède tous les 3 de bonne bases sur Python on ne s'est pas contenté de faire un jeu fonctionnel. On a imposé des règles supplémentaires:</p>
                 <p style="margin-top:1%">• Le jeu doit être beau, on ne veut pas que la grille soit juste un grand carré avec des "sous-carrés".</p>
-                <p>• Le jeu doit s'adapter à toute les tailles, donc AUCUNE constantes dans le code. (Spoiler: C'était LONG A FAIRE)</p>
+                <p>• Le jeu doit s'adapter à toute les tailles, donc AUCUNE constantes dans le code. (Spoiler: C'était LONG A FAIRE).</p>
                 <p>• Une page paramètre où on peut modifier certaines données (Joueurs, cases, balles ...)</p>
                 <p style="margin-top:1%">C'est ainsi qu'on s'est répartit les tâches de la manière suivante:</p>
-                <p style="margin-top:1%">• Abdelkader va s'occuper en priorité des bases du jeu (Fonctionnement des balles, tirettes ...) </p>
-                <p>• Moi (David), je m'occupe de la partie graphique et de l'optimisation du jeu peu importe la taille</p>
-                <p>• Walid s'occupe de la création de la page d'acceuil ainsi que le fonctionnement de la page paramètre.</p>
+                <p style="margin-top:1%">• <span style="color:goldenrod">Abdelkader</span> va s'occuper en priorité des bases du jeu (Fonctionnement des balles, tirettes ...) </p>
+                <p>• <span style="color:goldenrod">Moi (David)</span>, je m'occupe de la partie graphique et de l'optimisation du jeu peu importe la taille.</p>
+                <p>• <span style="color:goldenrod">Walid</span> s'occupe de la création de la page d'acceuil ainsi que le fonctionnement de la page paramètre.</p>
                 <p style="margin-top:1%">Et c'est ainsi que le projet a commencé ...</p>
 
             </div>
@@ -152,33 +152,34 @@
             </div>
             <div class="chapText">
                 <h1 style="margin-top:0; text-decoration:underline">5 Décembre 2023</h1>
-                <p>On avance progressivement, on se met d'accord pour faire une liste de tirette et une liste de case </p>
-                <p>On a déja la liste pour créer la grille, la liste pour créer les tirettes et la création de la balle quand on clique sur une case</p>
-                <p>Sauf qu'il manque plusieurs choses</p>
-                <p style="margin-top:1%">• Y a toujours pas les tirettes qu'on doit tirer</p>
-                <p>• Les tirettes sont aléatoires et ne sont pas du tout optimisés (Il peut y avoir 5 tirettes d'affilées)</p>
-                <p>• Pour placer les balles on parcourt toute la liste de la grille, ce qui n'est pas très optimal</p>
+                <p>On avance progressivement, on se met d'accord pour faire une liste de tirette et une liste de case.</p>
+                <p>On a déja la liste pour créer la grille, la liste pour créer les tirettes et la création de la balle quand on clique sur une case.</p>
+                <p>Sauf qu'il manque plusieurs choses.</p>
+                <p style="margin-top:1%">• Y a toujours pas les tirettes qu'on doit tirer.</p>
+                <p>• Les tirettes sont aléatoires et ne sont pas du tout optimisés (Il peut y avoir 5 tirettes d'affilées).</p>
+                <p>• Pour placer les balles on parcourt toute la liste de la grille, ce qui n'est pas très optimal.</p>
                 <p style="margin-top:1%">Comment résoudre chacun des problèmes ?</p>
-                <p style="margin-top:1%">• Pour les compteurs tirettes, pour l'instant on va s'occuper du fonctionnement sans l'affichage </p>
-                <p>• On va crée une fonction qui va vérifier les 2 tirettes de derrières et si elles ont toutes les 2 une tirette, alors on place un trou à la suivante</p>
-                <p>• On va faire une division euclidienne en divisant les coordonnées de la souris avec la taille de la case (Attention il y a la marge entre chaque cases à prendre en compte)</p>
+                <p style="margin-top:1%">• Pour les compteurs tirettes, pour l'instant on va s'occuper du fonctionnement sans l'affichage.</p>
+                <p>• On va crée une fonction qui va vérifier les 2 tirettes de derrières et si elles ont toutes les 2 une tirette, alors on place un trou à la suivante.</p>
+                <p>• On va faire une division euclidienne en divisant les coordonnées de la souris avec la taille de la case (Attention il y a la marge entre chaque cases à prendre en compte).</p>
                 <p style="margin-top:1%">Et c'est là que les problèmes ont commencé ...</p>
             </div>
         </div>
-        <p class="profilTitle">Chapitre 2: LES PROBLEMES</p>
+        <p class="profilTitle">Les Difficultés</p>
         <div class="ChapDiv" style="justify-content:space-between">
             <div class="chapText">
                 <h1 style="margin-top:0; text-decoration:underline">19 Décembre 2023</h1>
                 <p> </p>
-                <p>La consigne du projet est terminé, on a nos balles, on peut tirer sur les tirettes ... Bien joué Abdelkader !</p>
-                <p>La page d'acceuil et les paramètres marchent parfaitement, bien joué Walid aussi !</p>
-                <p>Quand-est-il de ma partie à moi(David) ???????</p>
-                <p style="margin-top:1%">Il faut être honnête, j'ai pas tellement travaillé le projet jusqu'au vacance de Noël, Lorsque les vacances sont arrivés je me suis donc mis au boulot !</p>
-                <p>A cause de ma flemmardise excessive, il restait toujours des problèmes:</p>
+                <p>La consigne du projet est terminé, on a nos balles, on peut tirer sur les tirettes ... 
+                <p>La page d'acceuil et les paramètres marchent parfaitement.
+                <p>La grille de jeu est centré peu importe la taille de la fenêtre, bien joué, et j'ai modifié la manière pour détecter le clique dans une case (Avec la division euclidienne).
+                <p style="margin-top:1%">Néanmoins il reste plein de petit détails qui dégrade le jeu:</p>
                 <p>• Le compteur tirette est juste un chiffre, il faut dessiner quelque chose.</p>
-                <p>• Le jeu n'est pas encore optimisé en fonction de la taille.</p>
+                <p>• Seule la grille est optimisé en fonction de la taille.</p>
                 <p>• Les Docstrings & Doctests sont pauvres.</p>
-                <p style="margin-top:1%">Et c'est ainsi que je me motive pour finir ce code à jamais !</p>
+                <p style="margin-top:1%">Avec les cours à travailler, je m'y suis mis à fond sur le projet que durant les vacances de Noël.</p>
+                <p style="margin-top:1%">Et donc pendant, toutes les vacances on tous les 3 nettoyé et optimisé le code pour obtenir un beau jeu.</p>
+                <p style="margin-top:1%">On a rajouté les docstrings & doctests, ajouter un visuel pour les compteurs tirettes, et optimiser la détection des cliques ...</p>
             </div>
 
             <div class="chapImg">
@@ -187,45 +188,46 @@
             </div>
         </div>
 
-        <p class="profilTitle">Chapitre 3: LA FIN DU PROJET</p>
+        <p class="profilTitle">LA FIN DU PROJET</p>
         <div class="ChapDiv">
             <div class="chapImg">
-                <p style="margin:0;width:100%; color:black; font-size:1.4em; z-index:1; position:absolute;"> Tirettes et balles</p>
+                <p style="margin:0;width:100%; color:black; font-size:1.4em; z-index:1; position:absolute;">Jeu final</p>
                <img class="chapImgEdit" src="res/ProjetAvancement/ChapThree.png">
             </div>
 
             <div class="chapText">
-                <h1 style="margin-top:0; text-decoration:underline">4 Janvier 2024 (Bonne année !)</h1>
-                <p>Oui oui, la veille de la date de rendu, je le termine (Quel timing !)</p>
-                <p>La page s'adapte parfaitement (Même la police d'écriture !) et le jeu est fluide, bien joué David !</p>
-                <p style="margin-top:1%"> Il ne me reste plus que le site à coder et le projet est terminé !</p>
+                <h1 style="margin-top:0; text-decoration:underline">4 Janvier 2024 (Bonne année !).</h1>
+                <p>C'est le 4 Janvier 2024, qu'on a terminé tous ce qu'on voulait faire, c'est à dire:</p>
+                <p>• Avoir un plateau de jeu agréable à regarder !</p>
+                <p>• Un jeu qui s'adapte à la taille de le fenêtre.</p>
+                <p>• Il n'y a aucune valeurs fixe dans le code (hormis la Largeur et la Hauteur de le fenêtre).</p>
+                <p style="margin-top:1%"> Et c'est en finissant de coder le site que le projet se termine ...</p>
             </div>
         </div>
         <p class="profilTitle">Quelques améliorations faites sur le projet</p>
         <div class="ChapDiv">
-            <div class="chapText" style="flex-basis:100%;">
+            <div class="chapText" style="flex-basis:100%; display:flex;flex-direction:column;justify-content:center">
                 <h2 style="margin-top:0;">- Bien optimisé peu importe la taille de la fenêtre.</h2>
                 <h2 style="margin-top:0;">- Chaque clique est précis.</h2>
-                <h2 style="margin-top:0;">- L'interface graphique est belle (Selon moi ^^).</h2>
+                <h2 style="margin-top:0;">- L'interface graphique est belle.</h2>
                 <h2 style="margin-top:0;">- On peut voir combien de balle il nous reste, et aussi c'est au tour de quel joueurs.</h2>
             </div>
         </div>
 
 
-        <p class="profilTitle">Quelques Anectodes sur quelques galères qu'on a eu chacun</p>
+        <p class="profilTitle">Quelques galères qu'on a eu chacun</p>
         <div class="ChapDiv" style="height:40vh">
             <div class="chapText" style="flex-basis:100%">
-                <p style="margin:1%"><span style="text-decoration:underline">DISCLAIMER:</span> Toutes les remarques que je fais ne sont pas réelles, juste des remarques rigolotes qui me sont passés par la tête lors de la rédaction... (Mes amis vont très bien ne vous inquiétez pas =D )</p>
                 <h1 style="margin-top:0; text-decoration:underline">Le hover et les Settings (Walid)</h1>
-                <p>"oui pendant mon travail j'ai galéré au début sur comment rajouter le hover sur les boutons et pour affecter certains paramètres" <span style="font-style:italic">Walid, 3/01/24 à 22:31</span> </p>
-                <p>C'est ce que mon ami Walid, a dit mot pour mot lorsque je lui ai demandé son PIRE cauchemar sur le projet, je me demande s'il s'en ai remis aujourd'hui ...</p> 
+                <p>"oui pendant mon travail j'ai galéré au début sur comment rajouter le hover sur les boutons et pour affecter certains paramètres"</p>
+                <p>C'est quelques choses dont il a eu du mal à faire, comment savoir quand la souris est sur le bouton, et comment détecter quel boutons on a mis la souris dessus.</p> 
                 <h1 style="margin-top:1%; text-decoration:underline">Les tirettes horizontales et verticales (AbdelKader)</h1>
-                <p>"La partie pour rendre la tirette horizontale non circulaire à été compliquée à  gérer à cause de problème de variable globale je pense." <span style="font-style:italic">Abdelkader, 4/01/24 à 4:03</span> </p>
-                <p>C'est comment Abdelkader m'a décrit la souffrance qu'était la gestion des tirettes, il était tellement dans la douleur qu'il a rédigé son message à 4h03, j'espère qu'il va mieux aujourd'hui ...</p>
-                <h1 style="margin-top:1%; text-decoration:underline">Les compteurs tirettes horizontales et verticales (Moi = David)</h1>
-                <p>"Est-ce-que je me suis vraiment embêté pendant une journée entière à faire en sorte que le clique se détecte seulement quand on clique à L'INTERIEUR DU PETIT CERCLE 1 ???, Bien évidemment" <span style="font-style:italic">David, 4/01/24, Maintenant</span> </p>
-                <p>C'est là quelques choses qui m'a le plus embêté pendant que je codais, je me suis acharné sur un truc dont on pouvait très bien faire sans.</p>
-                <p>J'ai galéré à pleins de choses évidemment (Détecter le clique dans une case sans parcourir la list et en ignorant la marge, Calculer la taille de la police en fonction de la taille de son boutton...)</p>
+                <p>"La partie pour rendre la tirette horizontale non circulaire à été compliquée à gérer à cause de problème de variable globale je pense."</p>
+                <p>C'est un problème, dont on a eu beacoup de mal à géré, comment faire en sorte que la tirette ne soit pas circulaire ? Et surtout comment faire en sorte qu'on puisse toujours terminer le jeu ?</p>
+                <h1 style="margin-top:1%; text-decoration:underline">Les compteurs tirettes horizontales et verticales et la Grille (Moi = David)</h1>
+                <p>"La détection du clique dans les cases, ainsi que sur les compteurs tirettes étaient très difficile"</p>
+                <p>C'est là quelques choses qui m'a le plus embêté pendant que je codais, puisque pour faire la détection du clique dans la case, il fallait prendre en compte la marge qu'il y avait entre chaque cases.</p>
+                <p>Pour les compteurs tirettes, c'était d'autant plus compliqué car il fallait passer par ces calculs mathématiques pour trouver la zone où on a crée le petit cercle du compteur tirette.</p>
             </div>
         </div>
     

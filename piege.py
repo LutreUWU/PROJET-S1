@@ -1,4 +1,7 @@
 """
+CODE FAIT PAR DAVID, ABDELKADER ET WALID.
+(A LIRE: Il y a 2 fichiers HTML, l'un est rédigé de manière profesionnelle, et l'autre est rédigé de manière "décontracté" avec quelques petites blague. Dans les 2 cas les fichiers renvoient les mêmes informations, ouvez celui que vous voulez en fonction de votre état d'humeur matinale !)
+
 Quelques remarques :
 - Dans ce jeu ON TIRE LES TIRETTES, on ne peut pas les pousser, donc par exemple s'il y a une tirette de 2 en bas il faudra cliquer en haut.
 - Le jeu s'adapte à la taille de la fenêtre (Police d'écriture, taille de la grille de jeu, taille des boutons ...), c'est le point fort de ce code.
